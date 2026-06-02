@@ -1,0 +1,115 @@
+%%==========================================================================%%
+%% methods.tex -- "Methods". Subsection structure and boilerplate modeled on %%
+%% the reference Scientific Data paper; prose paraphrased/genericized for     %%
+%% whole-body pediatric MRI. REWRITE and verify before submission.           %%
+%% [TBD: ...] = fill in our specifics.                                        %%
+%%==========================================================================%%
+
+\section*{Methods}\label{sec:methods}
+
+\subsection*{Ethics statement}\label{subsec:ethics}
+% Reusable skeleton: approving body + accordance + legal basis for sharing +
+% consent / de-identification status. ADAPT to our institution (e.g., Stanford
+% IRB + HIPAA) -- the reference uses Danish/EU GDPR wording, which does NOT
+% apply to us. See the de-identification TODO in CLAUDE.md.
+The study was approved by [TBD: named institutional review board / ethics
+committee, approval number], and all procedures were carried out in accordance
+with the relevant guidelines and regulations [TBD: e.g., the Declaration of
+Helsinki]. The data are shared under [TBD: legal basis / consent model], and
+[TBD: informed consent / waiver and consent for public sharing] was obtained.
+[TBD: state the de-identification status of the released data and any resulting
+access conditions --- see Usage Notes.]
+
+\subsection*{Participants}\label{subsec:cohort}
+% Reusable template: N, sex split, age (mean +/- SD), recruitment source,
+% acquisition date range, exclusions with counts.
+The dataset comprises [TBD: $N$] whole-body MRI examinations from [TBD: $N$]
+subjects ([TBD: $N$ female, $N$ male]) aged [TBD: 0--26] years at the time of
+imaging (mean $\pm$ standard deviation: [TBD: $x \pm y$] years). Subjects were
+[TBD: recruited / retrospectively identified] at [TBD: site(s)], with
+examinations acquired between [TBD: start] and [TBD: end]. Inclusion criteria
+were [TBD: e.g., diagnostic-quality whole-body coverage], and subjects were
+excluded for [TBD: reasons, with counts]. Participants represented a range of
+clinical presentations, both with and without pathology; the distribution is
+summarised in Figure~\ref{fig:cohort}, and a subject-by-subject description of
+demographic and clinical characteristics is provided in the accompanying
+metadata (Section~\ref{sec:datarecords}).
+
+\subsection*{Clinical MRI protocols}\label{subsec:acquisition}
+% Reusable template: scanner(s)/coil/field strength, protocol variability by
+% indication, shared sequence(s), parameter table, contrast vs non-contrast.
+% NOTE our TODO: confirm which sequences are included (e.g., whether DWI is
+% included, and whether 3D Slicer can filter by sequence) -- see CLAUDE.md.
+MRI data were acquired using [TBD: scanner manufacturer/model(s)] operating at
+[TBD: field strength(s)] at [TBD: site(s)]. Because imaging protocols were
+determined by clinical indication, the number and type of sequences vary across
+subjects, and include both contrast-enhanced and non-contrast acquisitions.
+Whole-body coverage was obtained using [TBD: acquisition strategy, e.g.,
+multi-station composed sequences], and acquired contrasts include [TBD: e.g.,
+T1-weighted, T2-weighted, STIR, Dixon, DWI]. Acquisition parameters for the most
+commonly used protocol are summarised in Table~\ref{tab:acq}; per-scan parameters
+are provided in the accompanying sidecar JSON files
+(Section~\ref{sec:datarecords}). [TBD: note any sequences deliberately excluded
+and why --- cf. the reference, which excluded diffusion data owing to less
+standardised quality assessment.]
+
+%%-- Acquisition-parameter table placeholder (cf. Table 1 of ref) ----------%%
+\begin{table}[h]
+\caption{Representative whole-body MRI acquisition parameters for the most
+frequently applied protocol (placeholder --- to be completed).}\label{tab:acq}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Parameter & [Seq.\ 1] & [Seq.\ 2] & [Seq.\ 3] \\
+\midrule
+TR [ms]            & [TBD] & [TBD] & [TBD] \\
+TE [ms]            & [TBD] & [TBD] & [TBD] \\
+Flip angle [$^\circ$] & [TBD] & [TBD] & [TBD] \\
+Voxel size [mm]    & [TBD] & [TBD] & [TBD] \\
+Orientation        & [TBD] & [TBD] & [TBD] \\
+\botrule
+\end{tabular}
+\end{table}
+
+\subsection*{Data processing}\label{subsec:curation}
+% Highly reusable: DICOM->NIfTI conversion + organisation; de-identification.
+% The reference used ezBIDS/dcm2niix + pydeface (an automatic de-facer) -- this
+% is directly relevant to our de-identification TODO (CLAUDE.md). Skull-stripping
+% (BET) is brain-specific and likely NOT applicable to whole-body; replace with
+% our QC/masking approach as needed.
+DICOM data were converted to NIfTI and organised following [TBD: BIDS-aligned /
+custom open] conventions (Section~\ref{sec:datarecords}) using [TBD: tool, e.g.,
+dcm2niix]. To de-identify the imaging, [TBD: describe the de-identification
+pipeline]. Where head-inclusive coverage permits facial reconstruction,
+identifiable facial features were removed using [TBD: an automatic de-facer,
+e.g., a pydeface-style tool --- see the de-identification TODO in CLAUDE.md].
+An overview of data collection, acquisition, and processing is presented in
+Figure~\ref{fig:workflow}.
+
+% Where radiology reports are included (Data Records), they are de-identified
+% ("scrubbed") to remove protected health information before release; validation
+% is reported in Technical Validation.
+Where de-identified radiology reports are released with the imaging, protected
+health information was removed using [TBD: report-scrubbing pipeline]; the
+validation of this scrubbing is reported in Section~\ref{sec:validation}.
+
+\subsection*{Annotation and labelling}\label{subsec:annotation}
+% Reusable concept: expert review + structured labels. Our addition: labels keyed
+% by reader and anatomy to enable inter-reader agreement (Technical Validation).
+Labels are provided to support supervised model development and are organised so
+that provenance is explicit: each label records the target anatomy, the label
+type ([TBD: segmentation / bounding box / image-level classification]), and the
+annotating reader together with their experience level. Annotation was performed
+using [TBD: tool/version] following [TBD: protocol/atlas]. A subset of [TBD: $N$]
+examinations was independently labelled by [TBD: $N$] readers to enable
+inter-reader agreement analysis (Section~\ref{sec:validation}).
+
+%%-- Workflow figure placeholder (cf. Fig. 2 of ref) -----------------------%%
+\begin{figure}[t]
+\centering
+\fbox{\parbox[c][4.5cm][c]{0.85\textwidth}{\centering\itshape
+[Figure placeholder: acquisition and processing workflow --- from imaging
+through conversion, de-identification, labelling, and quality assessment.]}}
+\caption{Overview of the data acquisition and processing workflow. [TBD:
+finalise.]}
+\label{fig:workflow}
+\end{figure}

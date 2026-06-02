@@ -1,0 +1,63 @@
+%%==========================================================================%%
+%% background.tex -- "Background & Summary".                                 %%
+%% Structure/boilerplate modeled on the reference Scientific Data paper;     %%
+%% prose paraphrased and genericized for whole-body pediatric MRI. REWRITE   %%
+%% and verify all claims/citations before submission. [TBD: ...] = fill in.  %%
+%%==========================================================================%%
+
+\section*{Background \& Summary}\label{sec:background}
+
+Magnetic resonance imaging (MRI) is a non-invasive imaging technique that
+provides high-resolution, soft-tissue-rich anatomical information without
+exposing patients to ionising radiation. These properties make it central to the
+diagnosis and monitoring of a wide range of conditions in clinical practice, and
+particularly valuable in paediatric populations, where avoiding ionising
+radiation is a primary concern [TBD: cite].
+
+% Reusable framing: image-based AI -> upstream need for whole-body anatomical
+% taxonomy -> adult-only / CT-dominated gap -> pediatric MRI need (mirrors the
+% abstract argument). Expand here.
+Image-based artificial intelligence (AI) tools are increasingly used across
+clinical applications, and a key upstream capability for many of them is the
+accurate identification of anatomy across the whole body. Progress on this task
+has been enabled by several large imaging datasets; however, to date these have
+been overwhelmingly limited to adult subjects and dominated by computed
+tomography (CT) [TBD: cite]. This adult, CT-centric focus limits paediatric
+adoption for two reasons. First, paediatric anatomy differs substantially from
+adult anatomy across development, so models calibrated on adults alone behave
+unpredictably on paediatric inputs [TBD: cite]. Second, because of children's
+heightened sensitivity to ionising radiation, MRI is generally preferred over CT
+in paediatric imaging, so adult CT corpora are of limited transfer value
+[TBD: cite].
+
+% Contribution paragraph.
+To help address these entangled gaps in image coverage and appropriate modality,
+we present a paediatric whole-body MRI dataset of [TBD: $\sim$300] examinations
+spanning ages [TBD: 0--26] years. The dataset includes both radiologically clear
+examinations and examinations exhibiting a range of pathologies, and is
+distributed in NIfTI format together with [TBD: rich indexing metadata,
+multi-reader anatomical labels, and (optionally) paired de-identified radiology
+reports]. An overview of the cohort and the imaging protocols is shown in
+Figure~\ref{fig:cohort}.
+
+% Reuse / impact paragraph: what the data can be used for.
+We anticipate that this dataset will support the development and benchmarking of
+paediatric whole-body anatomical analysis tools, including [TBD: anatomical
+classification and segmentation, cross-modality transfer, and report-grounded
+multimodal modelling]. By providing paediatric MRI with consistent organisation
+and labelling, it complements existing adult, CT-dominated resources and lowers
+the barrier to validating AI methods in paediatric settings.
+
+%%--------------------------------------------------------------------------%%
+%% Figure placeholder -- replace with our own figure (cf. Fig. 1 of ref:    %%
+%% distribution of presentations/pathologies and imaging protocols).        %%
+%%--------------------------------------------------------------------------%%
+\begin{figure}[t]
+\centering
+\fbox{\parbox[c][4.5cm][c]{0.85\textwidth}{\centering\itshape
+[Figure placeholder: cohort overview --- distribution of clinical
+presentations/pathologies (a) and imaging protocols/sequences per subject (b).]}}
+\caption{Overview of the cohort: distribution of clinical presentations and of
+the imaging protocols/sequences represented in the dataset. [TBD: finalise.]}
+\label{fig:cohort}
+\end{figure}

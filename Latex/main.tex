@@ -1,0 +1,98 @@
+%%==========================================================================%%
+%% main.tex -- Data Descriptor skeleton for a pediatric whole-body MRI       %%
+%% dataset, targeting Nature Scientific Data.                                %%
+%%                                                                           %%
+%% Built on the Springer Nature article template (sn-jnl.cls).               %%
+%% Scientific Data is a Nature Portfolio journal, so the Nature reference     %%
+%% style (sn-nature) is selected.                                            %%
+%%                                                                           %%
+%% Section structure follows the Scientific Data "Data Descriptor" format:   %%
+%%   Background & Summary -> Methods -> Data Records -> Technical Validation  %%
+%%   -> Usage Notes -> Code availability, plus the standard back matter.      %%
+%%                                                                           %%
+%% NOTE ON SUBMISSION: Springer Nature requires the manuscript as a single   %%
+%% .tex file. This working draft uses \input{abstract} for convenience;      %%
+%% before submission, inline abstract.tex and paste the .bbl in place of     %%
+%% the \bibliography command.                                                %%
+%%==========================================================================%%
+
+\documentclass[pdflatex,sn-nature]{sn-jnl}% Nature Portfolio reference style
+
+%%%% Standard Packages
+\usepackage{graphicx}%
+\usepackage{multirow}%
+\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{amsthm}%
+\usepackage{mathrsfs}%
+\usepackage[title]{appendix}%
+\usepackage{xcolor}%
+\usepackage{textcomp}%
+\usepackage{manyfoot}%
+\usepackage{booktabs}%
+\usepackage{algorithm}%
+\usepackage{algorithmicx}%
+\usepackage{algpseudocode}%
+\usepackage{listings}%
+
+\raggedbottom
+
+\begin{document}
+
+\title[Pediatric Whole-Body MRI Dataset]{A pediatric whole-body MRI dataset for image-based anatomical taxonomy}
+
+%%=============================================================%%
+%% Author / affiliation block -- placeholders, to be completed. %%
+%%=============================================================%%
+
+\author*[1]{\fnm{First} \sur{Author}}\email{corresponding@example.com}
+
+\author[1]{\fnm{Second} \sur{Author}}\email{second@example.com}
+
+\affil*[1]{\orgdiv{Department}, \orgname{Institution}, \orgaddress{\street{Street}, \city{City}, \postcode{00000}, \state{State}, \country{Country}}}
+
+%%================================%%
+%% Abstract (kept in abstract.tex for the working draft)            %%
+%%================================%%
+
+\input{abstract}
+
+\keywords{pediatric MRI, whole-body imaging, anatomical segmentation, open dataset, NIfTI, medical imaging AI}
+
+\maketitle
+
+%%==========================================================================%%
+%% Section bodies are kept in separate files for the working draft.          %%
+%% Before submission, inline them into this single .tex file (SN requirement).%%
+%%==========================================================================%%
+
+\input{background}
+
+\input{methods}
+
+\input{datarecords}
+
+\input{validation}
+
+\input{usagenotes}
+
+\input{codeavailability}
+
+%%==========================================================================%%
+\backmatter
+%%==========================================================================%%
+
+\bmhead{Acknowledgements}
+% Funding sources, contributing sites, and individuals. Not compulsory.
+
+\section*{Author contributions}\label{sec:contrib}
+% e.g., A.B. and C.D. designed the study; ... All authors reviewed the manuscript.
+
+\section*{Competing interests}\label{sec:coi}
+The authors declare no competing interests.
+
+\section*{Data availability}\label{sec:dataavail}
+% Repository, accession number/DOI, and access conditions for the dataset.
+
+\bibliography{references}% bib database for this manuscript
+
+\end{document}
