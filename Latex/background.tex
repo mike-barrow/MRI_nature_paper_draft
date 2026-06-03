@@ -1,53 +1,60 @@
 %%==========================================================================%%
 %% background.tex -- "Background & Summary".                                 %%
-%% Structure/boilerplate modeled on the reference Scientific Data paper;     %%
-%% prose paraphrased and genericized for whole-body pediatric MRI. REWRITE   %%
-%% and verify all claims/citations before submission. [TBD: ...] = fill in.  %%
+%% Structure/boilerplate modeled on the reference Scientific Data paper.     %%
+%% Prose paraphrased and genericized for whole-body pediatric PET/MRI.       %%
+%% REWRITE and verify all claims/citations before submission. [TBD: ...] =   %%
+%% fill in.                                                                   %%
 %%==========================================================================%%
 
 \section*{Background \& Summary}\label{sec:background}
 
-Magnetic resonance imaging (MRI) is a non-invasive imaging technique that
-provides high-resolution, soft-tissue-rich anatomical information without
-exposing patients to ionising radiation. These properties make it central to the
-diagnosis and monitoring of a wide range of conditions in clinical practice, and
-particularly valuable in paediatric populations, where avoiding ionising
-radiation is a primary concern [TBD: cite].
+Whole-body positron emission tomography combined with magnetic resonance imaging (PET/MRI)
+pairs high-resolution, soft-tissue-rich anatomical information with a functional measure of metabolic activity.
+The MRI component localises and characterises tissue without exposing patients to the ionising radiation of computed tomography (CT),
+while the PET component quantifies tracer uptake and so distinguishes active disease from treated or inactive tissue.
+These complementary properties make PET/MRI central to the diagnosis, staging, and treatment monitoring of paediatric malignancies such as lymphoma,
+where avoiding cumulative radiation across repeated examinations is a primary concern [TBD: cite].
 
 % Reusable framing: image-based AI -> upstream need for whole-body anatomical
-% taxonomy -> adult-only / CT-dominated gap -> pediatric MRI need (mirrors the
-% abstract argument). Expand here.
+% taxonomy + functional disease readout -> adult-only / CT-dominated gap ->
+% pediatric PET/MRI need (mirrors the abstract argument). Expand here.
 Image-based artificial intelligence (AI) tools are increasingly used across
 clinical applications, and a key upstream capability for many of them is the
-accurate identification of anatomy across the whole body. Progress on this task
-has been enabled by several large imaging datasets; however, to date these have
-been overwhelmingly limited to adult subjects and dominated by computed
-tomography (CT) [TBD: cite]. This adult, CT-centric focus limits paediatric
-adoption for two reasons. First, paediatric anatomy differs substantially from
-adult anatomy across development, so models calibrated on adults alone behave
-unpredictably on paediatric inputs [TBD: cite]. Second, because of children's
-heightened sensitivity to ionising radiation, MRI is generally preferred over CT
-in paediatric imaging, so adult CT corpora are of limited transfer value
-[TBD: cite].
+accurate identification of anatomy across the whole body, against which functional
+findings such as metabolically active lesions can then be localised and scored.
+Progress on these tasks has been enabled by several large imaging datasets.
+To date, however, these have been overwhelmingly limited to adult subjects and dominated by anatomical CT,
+with little paired functional imaging [TBD: cite].
+This adult, CT-centric focus limits paediatric adoption for three reasons.
+First, paediatric anatomy differs substantially from adult anatomy across development,
+so models calibrated on adults alone behave unpredictably on paediatric inputs [TBD: cite].
+Second, because of children's heightened sensitivity to ionising radiation,
+MRI is preferred over CT for the anatomical component of paediatric whole-body imaging,
+so adult CT corpora are of limited transfer value [TBD: cite].
+Third, anatomy alone does not capture disease activity,
+and the functional PET signal needed to detect lesions and assess treatment response is absent from these resources [TBD: cite].
 
 % Contribution paragraph.
-To help address these entangled gaps in image coverage and appropriate modality,
-we present a paediatric whole-body MRI dataset of 250 whole-body examinations from
+To help address these entangled gaps in image coverage, appropriate modality,
+and functional disease labelling,
+we present a paediatric whole-body PET/MRI dataset of 250 whole-body examinations from
 134 patients, spanning ages 1 to 25 years (median 14).
-The anatomy-segmentation subset of this collection is being expanded, and the released cohort is
+The annotated subsets of this collection are being expanded, and the released cohort is
 expected to grow as further annotations are completed.
-The dataset includes both radiologically clear
-examinations and examinations exhibiting a range of pathologies, and is
+The dataset includes both disease-free follow-up
+examinations and examinations exhibiting active lymphoma, and is
 distributed in NIfTI format together with [TBD: rich indexing metadata,
-multi-reader anatomical labels, and (optionally) paired de-identified radiology
+multi-reader anatomy segmentations, lesion annotations, staging and
+metabolic-response labels, and (optionally) paired de-identified radiology
 reports]. An overview of the cohort and the imaging protocols is shown in
 Figure~\ref{fig:cohort}.
 
 % Reuse / impact paragraph: what the data can be used for.
 We anticipate that this dataset will support the development and benchmarking of
-paediatric whole-body anatomical analysis tools, including [TBD: anatomical
-classification and segmentation, cross-modality transfer, and report-grounded
-multimodal modelling]. By providing paediatric MRI with consistent organisation
+paediatric whole-body anatomical and oncological analysis tools, including [TBD: anatomical
+segmentation, PET-guided lesion detection, automated staging and treatment-response
+assessment, cross-modality transfer, and report-grounded multimodal modelling].
+By providing paediatric PET/MRI with consistent organisation
 and labelling, it complements existing adult, CT-dominated resources and lowers
 the barrier to validating AI methods in paediatric settings.
 

@@ -1,5 +1,5 @@
 %%==========================================================================%%
-%% main.tex -- Data Descriptor skeleton for a pediatric whole-body MRI       %%
+%% main.tex -- Data Descriptor skeleton for a pediatric whole-body PET/MRI   %%
 %% dataset, targeting Nature Scientific Data.                                %%
 %%                                                                           %%
 %% Built on the Springer Nature article template (sn-jnl.cls).               %%
@@ -38,7 +38,11 @@
 
 \begin{document}
 
-\title[Pediatric Whole-Body MRI Dataset]{A pediatric whole-body MRI dataset for image-based anatomical taxonomy}
+% TITLE (chosen by Felix 2026-06-02): balanced "anatomy + disease" option.
+% Alternates kept as fallback, both Scientific Data compliant (<=110 chars):
+%   (i)  minimal fix:  A pediatric whole-body PET/MRI dataset for image-based anatomical taxonomy
+%   (ii) staging-fwd:  A pediatric whole-body PET/MRI dataset for automated lymphoma staging and response assessment
+\title[Pediatric Whole-Body PET/MRI Dataset]{A pediatric whole-body PET/MRI dataset with anatomy, lesion, and lymphoma staging annotations}
 
 %%=============================================================%%
 %% Author / affiliation block -- placeholders, to be completed. %%
@@ -56,7 +60,7 @@
 
 \input{abstract}
 
-\keywords{pediatric MRI, whole-body imaging, anatomical segmentation, open dataset, NIfTI, medical imaging AI}
+\keywords{pediatric PET/MRI, whole-body imaging, anatomical segmentation, lesion detection, lymphoma staging, open dataset, NIfTI, medical imaging AI}
 
 \maketitle
 
