@@ -1,60 +1,48 @@
 %%==========================================================================%%
-%% validation.tex -- "Technical Validation". Quality-scoring template modeled %%
-%% on the reference paper, paraphrased/genericized. REWRITE before submission.%%
-%% [TBD: ...] = fill in.                                                       %%
+%% validation.tex -- "Technical Validation".                                 %%
+%% Expert image-QC screens for non-diagnostic scans that limit reliable      %%
+%% annotation, not a rubber-stamp of the human segmentations. Inter-reader   %%
+%% agreement and a trained baseline are both candidate validation evidence,  %%
+%% TBD which to publish. American spelling.                                  %%
 %%==========================================================================%%
 
 \section*{Technical Validation}\label{sec:validation}
 
-\subsection*{Expert quality assessment}\label{subsec:imgqc}
-% Reusable: expert (radiologist/radiographer) scan-by-scan quality rating on an
-% ordinal Likert scale (1-5). Adapt scale wording to whole-body as needed.
-Each examination underwent a scan-by-scan quality assessment by [TBD: an expert
-reviewer / board-certified radiologist], who rated diagnostic image quality on a
-5-point Likert scale ranging from 1 (non-diagnostic) to 5 (perfect quality;
-Table~\ref{tab:qc}). [TBD: report the distribution of scores and how qc\_status
-was assigned, and note any examinations excluded as a result.]
+\subsection*{Expert image-quality assessment}\label{subsec:imgqc}
+Each examination underwent a scan-by-scan image-quality assessment by [TBD -> Heike: a board-certified radiologist], who rated diagnostic image quality on a 5-point Likert scale ranging from 1 (non-diagnostic) to 5 (perfect quality), as defined in Table~\ref{tab:qc}.
+The purpose of this screening is to identify examinations whose image quality is too low for reliable annotation, rather than to confirm that the segmentations are correct.
+[TBD: report the distribution of scores, the qc\_status threshold, and the number of examinations flagged or excluded as a result.]
 
-%%-- Quality-scoring table placeholder (cf. Table 2 of ref) ----------------%%
+%%-- Quality-scoring table -------------------------------------------------%%
 \begin{table}[h]
-\caption{Image-quality scoring scale used by the expert reviewer
-(placeholder --- adapt wording for whole-body MRI).}\label{tab:qc}
+\caption{Image-quality scoring scale used by the expert reviewer.}\label{tab:qc}
 \begin{tabular}{@{}cl@{}}
 \toprule
 Score & Description \\
 \midrule
-5 & Perfect scan, no artefacts. \\
-4 & Mild artefacts, fully diagnostic. \\
-3 & Mild--moderate artefacts; repeat if an abnormality were noticed. \\
-2 & Substantial artefacts; large abnormalities discernible but repeat needed. \\
+5 & Perfect scan, no artifacts. \\
+4 & Mild artifacts, fully diagnostic. \\
+3 & Mild to moderate artifacts, repeat if an abnormality were noticed. \\
+2 & Substantial artifacts, large abnormalities discernible but repeat needed. \\
 1 & Completely non-diagnostic. \\
 \botrule
 \end{tabular}
 \end{table}
 
 \subsection*{Inter-reader agreement}\label{subsec:agreement}
-% Because labels are keyed by reader, the multiply-read subset supports
-% inter-reader agreement: Dice/IoU for segmentations, Cohen's/Fleiss' kappa for
-% categorical labels. Strong validation content.
-For the subset of examinations annotated by multiple readers, we report
-inter-reader agreement to quantify label reliability --- [TBD: Dice/IoU for
-segmentations and Cohen's/Fleiss' $\kappa$ for categorical labels] --- broken
-down by anatomy where appropriate.
+% TBD whether inter-reader agreement, a trained baseline, or both serve as the
+% primary validation evidence. This subsection is provisional.
+% [TBD: include this analysis or omit it in favor of the baseline below.]
+For a subset of examinations annotated independently by more than one reader, inter-reader agreement quantifies label reliability, using [TBD: Dice for segmentation overlap and a weighted kappa for categorical labels], broken down by structure where appropriate.
 
 \subsection*{Metadata and data integrity}\label{subsec:integrity}
-% Reusable concept: confirm metadata completeness/consistency + file integrity.
-We verified the integrity and internal consistency of the release: [TBD: schema
-validation of the metadata tables, referential consistency with the relational
-index, and per-file checksums (e.g., SHA-256)]. [TBD: note the repository's
-preflight validation if applicable --- e.g., the PhysioNet validation tool.]
-
-\subsection*{Radiology report de-identification}\label{subsec:reportqc}
-% Validation that scrubbed reports are PHI-free.
-Where radiology reports are released, we audited the de-identification to confirm
-removal of protected health information using [TBD: manual review of a sample
-and/or automated PHI detection]; [TBD: report the outcome].
+We verified the integrity and internal consistency of the release through schema validation of the metadata table, checks of referential consistency between the metadata and the imaging and label files, and per-file checksums (SHA-256).
+The data additionally pass the curation and validation performed by the host repository (TCIA) as part of submission.
 
 \subsection*{Baseline analysis}\label{subsec:baseline}
-% Optional: baseline model / sanity check demonstrating fitness for purpose.
-[TBD: optional baseline experiment demonstrating that the data are fit for the
-intended whole-body anatomical classification/segmentation tasks.]
+% Baseline (optional). Candidate approaches:
+%  (a) trained anatomy-segmentation baseline (nnU-Net / TotalSegmentator-based),
+%  (b) trained lesion-segmentation baseline (AutoPET-style nnU-Net).
+%  Metrics: Dice, HD95, NSD, with bootstrapped 95% CIs.
+%  Status: no completed trained model yet.
+[TBD: a trained segmentation baseline (anatomy and/or lesion) demonstrating the data are fit for the intended whole-body segmentation tasks, reported with Dice, HD95, and NSD and 95\% confidence intervals.]

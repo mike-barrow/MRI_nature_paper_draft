@@ -1,14 +1,125 @@
 %%==========================================================================%%
 %% references.bib -- bibliography database for the pediatric whole-body MRI   %%
 %% dataset descriptor. Add entries as the manuscript develops.               %%
+%%                                                                            %%
+%% Entries below were curated for the Background & Summary.                   %%
 %%==========================================================================%%
 
-@Comment{Placeholder entry so the bibliography compiles before real
-references are added. Remove once genuine references exist.}
+%% --- Claim 1: PET/MRI central to pediatric lymphoma; radiation avoidance ---
 
-@misc{placeholder,
-  title        = {Placeholder reference},
-  author       = {{To Be Added}},
-  year         = {2026},
-  note         = {Replace with real references as the manuscript develops.}
+@article{Kurch_2021,
+  title   = {Whole-Body [{{18F}}]-{{FDG-PET}}/{{MRI}} for Staging of Pediatric Non-{{Hodgkin}} Lymphoma: First Results from a Single-Center Evaluation},
+  author  = {Kurch, Lars and Kluge, Regine and Sabri, Osama and Fischer, Lutz and Wendt, Sarah and Graf Einsiedel, Heidi and Starke, Susann and K{\"u}hl, Jan-Stefan and Christiansen, Holger and Hirsch, Franz Wolfgang and Sorge, Ina and Roth, Christian},
+  year    = 2021,
+  journal = {EJNMMI Research},
+  volume  = {11},
+  number  = {1},
+  pages   = {62},
+  doi     = {10.1186/s13550-021-00804-8}
+}
+
+@article{Masselli_2025,
+  title   = {Will {{PET}}/{{MR Imaging Replace PET}}/{{CT}} for {{Pediatric Applications}}?},
+  author  = {Masselli, Gabriele and Di Bella, Chiara},
+  year    = 2025,
+  journal = {Diagnostics},
+  volume  = {15},
+  number  = {9},
+  pages   = {1070},
+  doi     = {10.3390/diagnostics15091070}
+}
+
+%% --- Claim 2: public whole-body datasets are adult and CT-dominated; ---
+%% --- AutoPET the rare paired-functional exemplar ---
+
+@article{Wasserthal_2023,
+  title   = {{{TotalSegmentator}}: {{Robust}} Segmentation of 104 Anatomic Structures in {{CT}} Images},
+  author  = {Wasserthal, Jakob and Breit, Hanns-Christian and Meyer, Manfred T and Pradella, Maurice and Hinck, Daniel and Sauter, Alexander W and Heye, Tobias and Boll, Daniel T and Cyriac, Joshy and Yang, Shan and Bach, Michael and Segeroth, Martin},
+  year    = 2023,
+  journal = {Radiology: Artificial Intelligence},
+  volume  = {5},
+  number  = {5},
+  pages   = {e230024},
+  doi     = {10.1148/ryai.230024}
+}
+
+@article{Gatidis_2022,
+  title   = {A Whole-Body {{FDG-PET}}/{{CT}} Dataset with Manually Annotated Tumor Lesions},
+  author  = {Gatidis, Sergios and Hepp, Tobias and Fr{\"u}h, Marcel and La Foug{\`e}re, Christian and Nikolaou, Konstantin and Pfannenberg, Christina and Sch{\"o}lkopf, Bernhard and K{\"u}stner, Thomas and Cyran, Clemens and Rubin, Daniel},
+  year    = 2022,
+  journal = {Scientific Data},
+  volume  = {9},
+  number  = {1},
+  pages   = {601},
+  doi     = {10.1038/s41597-022-01718-3}
+}
+
+%% --- Claim 3: pediatric anatomy differs; adult models degrade on children --
+
+@article{Chatterjee_2025,
+  title   = {Children Are Not Small Adults: Addressing Limited Generalizability of an Adult Deep Learning {{CT}} Organ Segmentation Model to the Pediatric Population},
+  author  = {Chatterjee, Devina and Kanhere, Adway and Doo, Florence X. and Zhao, Jerry and Chan, Andrew and Welsh, Alexander and Kulkarni, Pranav and Trang, Annie and Parekh, Vishwa S. and Yi, Paul H.},
+  year    = 2025,
+  journal = {Journal of Imaging Informatics in Medicine},
+  volume  = {38},
+  number  = {3},
+  pages   = {1628--1641},
+  doi     = {10.1007/s10278-024-01273-w}
+}
+
+@article{Laborie_2026,
+  title   = {Performance of Adult-Trained Artificial Intelligence Models in Paediatric Imaging---a Scoping Review},
+  author  = {Laborie, Lene Bjerke and Lee, Jennifer and Antram, Edward and Lein, Regina K{\"u}fner and Shelmerdine, Susan Cheng},
+  year    = 2026,
+  journal = {European Radiology},
+  doi     = {10.1007/s00330-026-12354-5}
+}
+
+%% --- Claim 4: children more radiation-sensitive; MRI preferred over CT ---
+
+@article{Brenner_2007,
+  title   = {Computed Tomography---An Increasing Source of Radiation Exposure},
+  author  = {Brenner, David J. and Hall, Eric J.},
+  year    = 2007,
+  journal = {New England Journal of Medicine},
+  volume  = {357},
+  number  = {22},
+  pages   = {2277--2284},
+  doi     = {10.1056/NEJMra072149}
+}
+
+@article{GalloBernal_2025,
+  title   = {Whole-Body {{MRI}} in Children: {{Concepts}} and Controversies---{{AJR}} Expert Panel Narrative Review},
+  author  = {{Gallo-Bernal}, Sebastian and Chan, Sherwin S and Cho, Yoon Y and {Daldrup-Link}, Heike E and Gee, Michael S and Kemp, Justine M and Kraus, Mareen S and Meyers, Arthur B and {von Kr{\"u}chten}, Vanessa Ricarda and Greer, Mary-Louise C},
+  year    = 2025,
+  journal = {American Journal of Roentgenology},
+  volume  = {225},
+  number  = {1},
+  pages   = {e2432178},
+  doi     = {10.2214/AJR.24.32178}
+}
+
+%% --- Claim 5: anatomy alone insufficient; PET needed for disease activity ---
+%% --- and treatment response (Deauville / Lugano consensus) ---
+
+@article{Barrington_2014,
+  title   = {Role of {{Imaging}} in the {{Staging}} and {{Response Assessment}} of {{Lymphoma}}: {{Consensus}} of the {{International Conference}} on {{Malignant Lymphomas Imaging Working Group}}},
+  author  = {Barrington, Sally F. and Mikhaeel, N. George and Kostakoglu, Lale and Meignan, Michel and Hutchings, Martin and M{\"u}eller, Stefan P. and Schwartz, Lawrence H. and Zucca, Emanuele and Fisher, Richard I. and Trotman, Judith and Hoekstra, Otto S. and Hicks, Rodney J. and O'Doherty, Michael J. and Hustinx, Roland and Biggi, Alberto and Cheson, Bruce D.},
+  year    = 2014,
+  journal = {Journal of Clinical Oncology},
+  volume  = {32},
+  number  = {27},
+  pages   = {3048--3058},
+  doi     = {10.1200/JCO.2013.53.5229}
+}
+
+@article{Cheson_2014,
+  title   = {Recommendations for Initial Evaluation, Staging, and Response Assessment of Hodgkin and Non-Hodgkin Lymphoma: {{The}} Lugano Classification},
+  author  = {Cheson, Bruce D and Fisher, Richard I and Barrington, Sally F and Cavalli, Franco and Schwartz, Lawrence H and Zucca, Emanuele and Lister, T Andrew},
+  year    = 2014,
+  journal = {Journal of Clinical Oncology},
+  volume  = {32},
+  number  = {27},
+  pages   = {3059--3067},
+  doi     = {10.1200/JCO.2013.54.8800}
 }

@@ -1,100 +1,46 @@
 %%==========================================================================%%
-%% datarecords.tex -- "Data Records". BIDS/NIfTI/sidecar boilerplate modeled  %%
-%% on the reference paper, paraphrased/genericized for whole-body. REWRITE    %%
-%% and verify before submission. [TBD: ...] = fill in.                        %%
+%% datarecords.tex -- "Data Records".                                        %%
+%% TCIA DICOM release (AutoPET-shaped): DICOM hierarchy + a per-examination   %%
+%% metadata CSV + label records. American spelling. Cohort numbers are       %%
+%% [TBD] pending reconciliation.                                             %%
 %%==========================================================================%%
 
 \section*{Data Records}\label{sec:datarecords}
 
-% Repository + accession/DOI. OPEN: leading candidate is PhysioNet (see CLAUDE.md
-% TODOs); AIMI/DOI still being resolved.
-The dataset is deposited at [TBD: repository --- e.g., PhysioNet] under
-[TBD: accession/DOI]. All imaging data, labels, metadata, and (where included)
-radiology reports are organised as described below.
+The dataset is deposited in The Cancer Imaging Archive (TCIA) under accession [TBD -> TCIA] with the Digital Object Identifier [TBD -> TCIA], and is released under a Creative Commons Attribution 4.0 International (CC BY 4.0) license.
+The imaging, segmentation labels, and accompanying metadata are organized as described below.
 
-\subsection*{File organisation and naming}\label{subsec:layout}
-% OPEN DECISION (to resolve): BIDS-aligned vs. custom open layout (see CLAUDE.md).
-% Reusable boilerplate: BIDS establishes consistent folder structures, filename
-% patterns, and formats. Caveat: BIDS is neuro-centric -> document a whole-body
-% extension.
-The data are organised following [TBD: the Brain Imaging Data Structure (BIDS)
-standard / a custom open layout], which establishes consistent rules for folder
-structure, filename patterns, and formats. [TBD: because BIDS is primarily
-specified for neuroimaging, document here any whole-body-specific extensions to
-the convention.] Subjects are assigned individual folders (e.g., \texttt{sub-01},
-\texttt{sub-02}), each containing one or more session folders, within which the
-imaging data are stored. Repeated acquisitions of the same sequence are
-distinguished by a \texttt{run-} index.
+\subsection*{File organization}\label{subsec:layout}
+The imaging follows the standard TCIA DICOM hierarchy.
+Each subject contains one or more imaging studies (examinations), and each study contains the PET and MRI series acquired in that session.
+Studies and series are identified by their DICOM unique identifiers, which are remapped during de-identification, and a per-subject date offset is applied so that the relative timing between a subject's examinations is preserved.
 
-\subsection*{Imaging data and sidecar metadata}\label{subsec:imaging}
-% Reusable: NIfTI .nii.gz + per-scan JSON sidecars with acquisition params;
-% top-level dataset_description.json + README; participants.tsv/.json; "n/a".
-All imaging data are provided in NIfTI format (\texttt{.nii.gz}), each
-accompanied by a sidecar JSON file containing the (de-identified) acquisition
-parameters. The top-level directory includes a \texttt{dataset\_description.json}
-describing the dataset and a \texttt{README} providing additional context. A
-\texttt{participants.tsv} file holds per-subject demographic and clinical
-information, with a companion \texttt{participants.json} defining each column and
-its permitted values. Missing values are recorded as ``n/a''.
+\subsection*{Imaging data}\label{subsec:imaging}
+The PET and MRI image data are provided in DICOM, the native clinical format, with the acquisition parameters retained in the DICOM headers.
+Segmentation labels are provided as [TBD: NIfTI or DICOM-SEG] volumes spatially aligned to the corresponding imaging series.
 
-\subsection*{Machine-readable metadata and indexing}\label{subsec:metadata}
-% Canonical metadata = open plain-text (TSV/CSV + JSON). OPEN: assess overlap with
-% Croissant (MLCommons), which PhysioNet recommends -- adopt it rather than a
-% parallel schema if it covers our needs (see CLAUDE.md).
-The canonical metadata are provided as open plain-text tables (TSV/CSV) with JSON
-sidecars so the dataset is fully usable with standard tooling. We aim to capture
-the indexing variables useful for cohort selection and modelling, grouped as
-follows (placeholder inventory --- to be finalised, and to be reconciled with the
-Croissant metadata schema recommended by the target repository):
+\subsection*{Metadata}\label{subsec:metadata}
+A per-examination metadata table is provided as an open plain-text file (CSV) with an accompanying data dictionary, so the dataset is usable with standard tooling.
+The table captures the indexing variables useful for cohort selection and modeling, grouped as in Table~\ref{tab:vars}.
 
 \begin{table}[h]
-\caption{Candidate indexing variables provided with the dataset (placeholder).}\label{tab:vars}
+\caption{Indexing variables provided with the dataset [TBD: finalize].}\label{tab:vars}
 \begin{tabular}{@{}ll@{}}
 \toprule
 Group & Example fields \\
 \midrule
-Subject / demographics & subject\_id, age\_at\_scan, sex, weight, height/BMI, (ethnicity) \\
-Clinical / presentation & indication, normal\_vs\_abnormal, pathology\_category, region, diagnosis \\
-Acquisition & scanner, field\_strength, sequence/contrast, coverage, voxel\_spacing, TR/TE \\
-Labels / annotation & label\_id, anatomy, label\_type, reader\_id, reader\_experience, n\_readers \\
-Reports & report\_id, scrubbed\_text, section tags, linkage to subject/scan \\
-File / QC & nifti\_path, dimensions, checksum, qc\_status, license \\
+Subject / demographics & subject\_id, age\_at\_scan, sex \\
+Clinical / presentation & indication, normal\_vs\_abnormal, pathology\_category, diagnosis \\
+Acquisition & scanner, field\_strength, sequence/contrast, voxel\_spacing, TR/TE \\
+Labels / annotation & label\_id, structure, label\_type \\
+File / QC & dicom\_reference, checksum, qc\_status, license \\
 \botrule
 \end{tabular}
 \end{table}
 
-\subsection*{Relational index}\label{subsec:index}
-% OPEN DECISION: SQLite as DERIVED convenience index (recommended) vs canonical
-% store (see CLAUDE.md). Plain-text remains source of truth; SQLite generated by
-% a published script.
-For convenience we additionally provide a relational index (SQLite) joining
-subjects, scans, labels, readers, and reports into a single queryable file. The
-index is generated from the canonical plain-text tables by a published script
-(Section~\ref{sec:code}), so it is fully reproducible. [TBD: describe the schema
---- tables and keys --- optionally with a schema figure.]
-
 \subsection*{Label records}\label{subsec:labels}
-Labels are stored so that provenance is explicit and queryable: each label is
-keyed by target anatomy and by the annotating reader (with experience level),
-and records the label type.
-This organisation lets users select labels by reader or anatomy and supports the
-inter-reader agreement analysis in Section~\ref{sec:validation}.
-The released labels fall into three categories.
-Whole-body anatomical segmentation labels are provided for 37 examinations.
-Lesion segmentation labels are provided for 112 examinations.
-A further 142 examinations are disease-free follow-up scans demonstrating
-complete metabolic response, recorded as such so they can be selected as
-pathology-negative references.
-[TBD: state file formats and folder location, e.g., under a \texttt{derivatives}
-folder following the same layout as the imaging.]
-
-\subsection*{Radiology reports}\label{subsec:reports}
-% NEW component: optional de-identified ("scrubbed") radiology reports paired with
-% the imaging, enabling richer multimodal modelling. De-identification described
-% in Methods; validated in Technical Validation.
-Where available, de-identified (``scrubbed'') radiology reports are provided and
-linked to the corresponding examinations, enabling richer multimodal modelling
-(e.g., image--text pretraining, automated report generation, and weakly
-supervised pathology labelling) beyond what imaging alone supports. The
-de-identification procedure and its validation are described in
-Sections~\ref{sec:methods} and~\ref{sec:validation}.
+The released segmentation labels fall into three categories.
+Whole-body anatomical segmentation labels are provided for [TBD] examinations.
+Tumor-lesion segmentation labels are provided for [TBD] examinations.
+A further [TBD] examinations are disease-free follow-up scans demonstrating complete metabolic response, recorded as such so they can be selected as pathology-negative references.
+Each label records its target structure and label type, and is stored [TBD: state file formats and folder location, e.g. under a derivatives folder mirroring the imaging layout].

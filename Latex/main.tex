@@ -38,17 +38,26 @@
 
 \begin{document}
 
-\title[Pediatric Whole-Body PET/MRI Dataset]{A pediatric whole-body PET/MRI dataset for anatomical taxonomy and lesion detection}
+\title[Pediatric Whole-Body PET/MRI Dataset]{A pediatric whole-body PET/MRI dataset with anatomical and tumor-lesion segmentations}
 
 %%=============================================================%%
-%% Author / affiliation block -- placeholders, to be completed. %%
+%% Author / affiliation block.
+%% AUTHORSHIP: all authors contributed equally, no designated first author.
+%% Author set and order pending confirmation with Michael and Heike. Darlene
+%% Okpokpo pending Heike (NIH R01 work needs Stanford affiliation, and she is
+%% no longer Stanford). Corresponding author and institutional email TBD.
+%% Per-author affiliation strings pending Heike. Working set from the AIMI
+%% poster, to confirm: Horvath, Barrow, Singh, Lokesha, Okpokpo, Gatidis,
+%% Daldrup-Link.
 %%=============================================================%%
 
-\author*[1]{\fnm{First} \sur{Author}}\email{corresponding@example.com}
+\author*[1]{\fnm{[TBD]} \sur{[TBD]}}\email{}
+\equalcont{All authors contributed equally to this work.}
 
-\author[1]{\fnm{Second} \sur{Author}}\email{second@example.com}
+\author[1]{\fnm{[TBD]} \sur{[TBD]}}\email{}
+\equalcont{All authors contributed equally to this work.}
 
-\affil*[1]{\orgdiv{Department}, \orgname{Institution}, \orgaddress{\street{Street}, \city{City}, \postcode{00000}, \state{State}, \country{Country}}}
+\affil*[1]{\orgdiv{[TBD: Department of Radiology]}, \orgname{[TBD: Stanford University School of Medicine]}, \orgaddress{\city{Stanford}, \state{CA}, \country{USA}}}
 
 %%================================%%
 %% Abstract (kept in abstract.tex for the working draft)            %%
@@ -56,7 +65,7 @@
 
 \input{abstract}
 
-\keywords{pediatric PET/MRI, whole-body imaging, anatomical segmentation, lesion detection, lymphoma staging, open dataset, NIfTI, medical imaging AI}
+\keywords{pediatric PET/MRI, whole-body imaging, anatomical segmentation, tumor lesion segmentation, lymphoma staging, open dataset, DICOM, medical imaging AI}
 
 \maketitle
 
@@ -81,17 +90,24 @@
 \backmatter
 %%==========================================================================%%
 
-\bmhead{Acknowledgements}
-% Funding sources, contributing sites, and individuals. Not compulsory.
+% Acknowledgements: none. No non-author contributors to acknowledge, so the
+% optional Acknowledgements section is omitted.
 
 \section*{Author contributions}\label{sec:contrib}
-% e.g., A.B. and C.D. designed the study; ... All authors reviewed the manuscript.
+[TBD: CRediT author contributions, all-equal authorship model, to be confirmed with M. Barrow and H. Daldrup-Link.] All authors reviewed and approved the manuscript.
+
+\section*{Funding}\label{sec:funding}
+[TBD: funding statement.]
+% Funding strings ready: NCI R01 CA269231, plus a Rolf W. Gunther Foundation
+% travel grant for F.H.
 
 \section*{Competing interests}\label{sec:coi}
 The authors declare no competing interests.
 
 \section*{Data availability}\label{sec:dataavail}
-% Repository, accession number/DOI, and access conditions for the dataset.
+The dataset will be deposited in The Cancer Imaging Archive (TCIA, https://www.cancerimagingarchive.net) under accession [TBD] and Digital Object Identifier [TBD], released under a Creative Commons Attribution 4.0 International (CC BY 4.0) license.
+Imaging is provided in DICOM, with segmentations as DICOM-SEG.
+Access conditions: [TBD].
 
 \bibliography{references}% bib database for this manuscript
 

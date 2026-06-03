@@ -8,69 +8,44 @@
 \section*{Methods}\label{sec:methods}
 
 \subsection*{Ethics statement}\label{subsec:ethics}
-% Reusable skeleton: approving body + accordance + legal basis for sharing +
-% consent / de-identification status. ADAPT to our institution (e.g., Stanford
-% IRB + HIPAA) -- the reference uses Danish/EU GDPR wording, which does NOT
-% apply to us. See the de-identification TODO in CLAUDE.md.
-The study was approved by [TBD: named institutional review board / ethics
-committee, approval number], and all procedures were carried out in accordance
-with the relevant guidelines and regulations [TBD: e.g., the Declaration of
-Helsinki]. The data are shared under [TBD: legal basis / consent model], and
-[TBD: informed consent / waiver and consent for public sharing] was obtained.
-[TBD: state the de-identification status of the released data and any resulting
-access conditions --- see Usage Notes.]
+% Ethics statement: approving body, accordance, legal basis for sharing,
+% consent / de-identification status. Targeted to Stanford IRB + HIPAA.
+The study was approved by [TBD -> Heike: approving IRB and protocol number], and all procedures were carried out in accordance with the Declaration of Helsinki and the Health Insurance Portability and Accountability Act (HIPAA).
+The data are shared under [TBD -> Heike: legal basis and consent model, e.g. an IRB-approved waiver of informed consent for retrospective de-identified data].
+% Planned de-identification (pending Stanford Privacy Office certification):
+% HIPAA Safe Harbor + whole-body defacing of MR and PET, enabling open CC BY 4.0.
+[TBD: de-identification status of the released data and the resulting access conditions (see the Usage Notes).]
 
 \subsection*{Participants}\label{subsec:cohort}
 % Reusable template: N, sex split, age (mean +/- SD), recruitment source,
 % acquisition date range, exclusions with counts.
-The released cohort comprises 250 whole-body PET/MRI examinations from 134
-patients aged 1 to 25 years at the time of imaging (median 14 years; sex split
-[TBD: $N$ female, $N$ male]).
-Subjects were retrospectively identified at [TBD: site(s)], with examinations
-acquired between [TBD: start] and [TBD: end].
-The released examinations form the union of three annotated subsets, which
-partially overlap (a single examination may belong to more than one subset, so
-the subset counts do not sum to the cohort total).
-The first subset comprises 37 examinations from 36 patients with whole-body
-anatomical segmentation labels.
-The second comprises 112 examinations from 95 patients with lesion segmentation
-labels.
-The third comprises 142 disease-free follow-up examinations from 95 patients,
-each demonstrating complete metabolic response.
-The anatomy-segmentation and lesion-segmentation subsets overlap in 29
-examinations (32 patients at the patient level).
-The anatomy-segmentation subset alone spans ages 1 to 17 years (median 11), and
-is being expanded toward a larger target, so the released cohort is expected to
-grow as further annotations are completed.
-Inclusion criteria were [TBD: e.g., diagnostic-quality whole-body coverage], and
-subjects were excluded for [TBD: reasons, with counts].
-Participants represented a range of clinical presentations, both with and without
-pathology, and the distribution is summarised in Figure~\ref{fig:cohort}.
-A subject-by-subject description of demographic and clinical characteristics is
-provided in the accompanying metadata (Section~\ref{sec:datarecords}).
+The released cohort comprises [TBD] whole-body PET/MRI examinations from [TBD] patients aged [TBD] years at the time of imaging (median [TBD]).
+The sex split was [TBD -> Michael: N female and N male].
+Subjects were retrospectively identified at Lucile Packard Children's Hospital at Stanford, with examinations acquired between [TBD -> Michael: start] and [TBD -> Michael: end].
+The released examinations form the union of three annotated subsets, which partially overlap, so a single examination may belong to more than one subset and the subset counts do not sum to the cohort total.
+The first subset comprises [TBD] examinations from [TBD] patients with whole-body anatomical segmentation labels.
+The second comprises [TBD] examinations from [TBD] patients with tumor-lesion segmentation labels.
+The third comprises [TBD] disease-free follow-up examinations from [TBD] patients, each demonstrating complete metabolic response.
+The anatomy-segmentation and lesion-segmentation subsets overlap in [TBD] examinations ([TBD] patients at the patient level).
+The anatomy-segmentation subset alone spans ages [TBD] years (median [TBD]).
+Inclusion criteria were [TBD: e.g. diagnostic-quality whole-body PET/MRI coverage], and subjects were excluded for [TBD: reasons, with counts].
+Participants represented a range of clinical presentations, both with and without pathology, and the distribution is summarized in Figure~\ref{fig:cohort}.
+A subject-by-subject description of demographic and clinical characteristics is provided in the accompanying metadata (Section~\ref{sec:datarecords}).
 
-\subsection*{Clinical MRI protocols}\label{subsec:acquisition}
-% Reusable template: scanner(s)/coil/field strength, protocol variability by
-% indication, shared sequence(s), parameter table, contrast vs non-contrast.
-% NOTE our TODO: confirm which sequences are included (e.g., whether DWI is
-% included, and whether 3D Slicer can filter by sequence) -- see CLAUDE.md.
-MRI data were acquired using [TBD: scanner manufacturer/model(s)] operating at
-[TBD: field strength(s)] at [TBD: site(s)]. Because imaging protocols were
-determined by clinical indication, the number and type of sequences vary across
-subjects, and include both contrast-enhanced and non-contrast acquisitions.
-Whole-body coverage was obtained using [TBD: acquisition strategy, e.g.,
-multi-station composed sequences], and acquired contrasts include [TBD: e.g.,
-T1-weighted, T2-weighted, STIR, Dixon, DWI]. Acquisition parameters for the most
-commonly used protocol are summarised in Table~\ref{tab:acq}; per-scan parameters
-are provided in the accompanying sidecar JSON files
-(Section~\ref{sec:datarecords}). [TBD: note any sequences deliberately excluded
-and why --- cf. the reference, which excluded diffusion data owing to less
-standardised quality assessment.]
+\subsection*{Image acquisition}\label{subsec:acquisition}
+% PET + MRI acquisition. Scanner, field strength, sequences, and PET dose/uptake
+% are TBD (Michael / DICOM headers). Tracer is FDG. DICOM-only release, so
+% per-scan parameters live in the DICOM headers, not NIfTI sidecars.
+Examinations were acquired as integrated whole-body PET/MRI on a [TBD -> Michael: PET/MR scanner manufacturer and model] operating at [TBD -> Michael: field strength].
+For the PET component, [$^{18}$F]fluorodeoxyglucose (FDG) was the tracer in all examinations, administered at [TBD -> Michael: injected activity] and imaged after an uptake period of [TBD -> Michael: uptake time].
+For the MRI component, because imaging protocols were determined by clinical indication, the number and type of sequences vary across subjects, and include both contrast-enhanced and non-contrast acquisitions.
+Whole-body coverage was obtained using [TBD -> Michael: acquisition strategy, e.g. multi-station composed sequences], and acquired contrasts include [TBD -> Michael: e.g. T1-weighted, T2-weighted, STIR, Dixon, DWI].
+Acquisition parameters for the most commonly used MRI protocol are summarized in Table~\ref{tab:acq}, and per-scan parameters are recorded in the DICOM headers and the accompanying metadata (Section~\ref{sec:datarecords}).
+[TBD: note any MRI sequences deliberately excluded and why.]
 
 %%-- Acquisition-parameter table placeholder (cf. Table 1 of ref) ----------%%
 \begin{table}[h]
-\caption{Representative whole-body MRI acquisition parameters for the most
-frequently applied protocol (placeholder --- to be completed).}\label{tab:acq}
+\caption{Representative whole-body MRI acquisition parameters for the most frequently applied protocol [TBD -> Michael].}\label{tab:acq}
 \begin{tabular}{@{}llll@{}}
 \toprule
 Parameter & [Seq.\ 1] & [Seq.\ 2] & [Seq.\ 3] \\
@@ -85,45 +60,26 @@ Orientation        & [TBD] & [TBD] & [TBD] \\
 \end{table}
 
 \subsection*{Data processing}\label{subsec:curation}
-% Highly reusable: DICOM->NIfTI conversion + organisation; de-identification.
-% The reference used ezBIDS/dcm2niix + pydeface (an automatic de-facer) -- this
-% is directly relevant to our de-identification TODO (CLAUDE.md). Skull-stripping
-% (BET) is brain-specific and likely NOT applicable to whole-body; replace with
-% our QC/masking approach as needed.
-DICOM data were converted to NIfTI and organised following [TBD: BIDS-aligned /
-custom open] conventions (Section~\ref{sec:datarecords}) using [TBD: tool, e.g.,
-dcm2niix]. To de-identify the imaging, [TBD: describe the de-identification
-pipeline]. Where head-inclusive coverage permits facial reconstruction,
-identifiable facial features were removed using [TBD: an automatic de-facer,
-e.g., a pydeface-style tool --- see the de-identification TODO in CLAUDE.md].
-An overview of data collection, acquisition, and processing is presented in
-Figure~\ref{fig:workflow}.
+% DICOM-only release. Segmentation output format (NIfTI vs DICOM-SEG) is TBD.
+% De-identification most likely handled by the TCIA submission pipeline
+% (CTP/Posda), TBD. Report scrubbing removed: reports are not part of the release.
+The released imaging is provided in its native DICOM format.
+Manual segmentations, produced as described below, are released as [TBD: NIfTI or DICOM-SEG] label volumes aligned to the corresponding imaging.
+De-identification of the imaging is performed to a HIPAA-compliant standard [TBD: most likely through the host repository's submission pipeline, e.g. the TCIA CTP/Posda tools], including removal of protected health information from the DICOM headers and, where head-inclusive coverage permits facial reconstruction, removal of identifiable facial features (defacing) [TBD: tool and parameters].
+An overview of data collection, acquisition, and processing is presented in Figure~\ref{fig:workflow}.
 
-% Where radiology reports are included (Data Records), they are de-identified
-% ("scrubbed") to remove protected health information before release; validation
-% is reported in Technical Validation.
-Where de-identified radiology reports are released with the imaging, protected
-health information was removed using [TBD: report-scrubbing pipeline]; the
-validation of this scrubbing is reported in Section~\ref{sec:validation}.
-
-\subsection*{Annotation and labelling}\label{subsec:annotation}
-% Reusable concept: expert review + structured labels. Our addition: labels keyed
-% by reader and anatomy to enable inter-reader agreement (Technical Validation).
-Labels are provided to support supervised model development and are organised so
-that provenance is explicit: each label records the target anatomy, the label
-type ([TBD: segmentation / bounding box / image-level classification]), and the
-annotating reader together with their experience level. Annotation was performed
-using [TBD: tool/version] following [TBD: protocol/atlas]. A subset of [TBD: $N$]
-examinations was independently labelled by [TBD: $N$] readers to enable
-inter-reader agreement analysis (Section~\ref{sec:validation}).
+\subsection*{Annotation and labeling}\label{subsec:annotation}
+% Annotators: S. Singh, D. Okpokpo, F. Horvath, Y. Lokesha (no per-structure
+% attribution). Tool = 3D Slicer. Annotation protocol/SOP TBD.
+% Inter-reader treatment decided in Technical Validation.
+Labels are provided to support supervised model development, with each label recording its target structure and label type (voxel-level segmentation).
+Annotation was performed in 3D Slicer following [TBD: annotation protocol] by a team of readers of varying experience: two postdoctoral physicians in pediatric radiology research (S. Singh and Y. Lokesha) and two medical/doctoral students (F. Horvath and D. Okpokpo).
 
 %%-- Workflow figure placeholder (cf. Fig. 2 of ref) -----------------------%%
 \begin{figure}[t]
 \centering
 \fbox{\parbox[c][4.5cm][c]{0.85\textwidth}{\centering\itshape
-[Figure placeholder: acquisition and processing workflow --- from imaging
-through conversion, de-identification, labelling, and quality assessment.]}}
-\caption{Overview of the data acquisition and processing workflow. [TBD:
-finalise.]}
+[Figure 2 placeholder: acquisition and processing workflow, from imaging through conversion, de-identification, labeling, and quality assessment. Real image pending.]}}
+\caption{Overview of the data acquisition and processing workflow. [TBD: finalize.]}
 \label{fig:workflow}
 \end{figure}

@@ -8,6 +8,7 @@
 *.blg
 *.brf
 *.bst
+!sn-nature.bst
 *.dvi
 *.fdb_latexmk
 *.fls

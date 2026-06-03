@@ -1,52 +1,24 @@
 %%==========================================================================%%
-%% usagenotes.tex -- "Usage Notes". Access/registration pattern modeled on    %%
-%% the reference paper, genericized to a credentialed repository (the ref uses %%
-%% PublicnEUro/GDPR; we will likely use PhysioNet credentialed access + DUA).  %%
-%% REWRITE before submission. [TBD: ...] = fill in.                            %%
+%% usagenotes.tex -- "Usage Notes".                                          %%
+%% TCIA DICOM release. Access conditions TBD. DICOM tooling, CSV filtering.  %%
+%% American spelling.                                                        %%
 %%==========================================================================%%
 
 \section*{Usage Notes}\label{sec:usage}
 
 \subsection*{Access conditions}\label{subsec:license}
-% Reusable pattern: state de-identification status -> resulting access model
-% (open vs credentialed + DUA), registration steps, expected timelines, license,
-% commercial-use terms. Adapt to the target repository's process.
-[TBD: state the de-identification status of the release and the resulting access
-model.] Access is provided via [TBD: repository, e.g., PhysioNet], where users
-[TBD: register / become credentialed and sign a Data Use Agreement] before
-download. [TBD: expected timelines, the data license, and any restrictions on
-commercial use.]
+The dataset is hosted on The Cancer Imaging Archive (TCIA).
+[TBD: state the de-identification status of the release, the resulting access model (open download versus credentialed access), the data license, expected timelines, and any restrictions on commercial use.]
 
 \subsection*{Accessing the imaging and metadata}\label{subsec:access}
-The imaging is distributed as NIfTI (\texttt{.nii.gz}) and can be read with
-standard tools [TBD: e.g., \texttt{nibabel}, SimpleITK]. The accompanying
-plain-text metadata tables can be loaded with any standard data-analysis tooling.
+The imaging is distributed in DICOM and can be read with standard tools such as pydicom, dcm2niix, 3D Slicer, and MITK.
+The accompanying plain-text metadata table (CSV) can be loaded with any standard data-analysis tooling.
 
-\subsection*{Querying the index}\label{subsec:query}
-% Show how the SQLite index enables cohort selection.
-The provided relational index supports cohort selection --- for example,
-selecting subjects by age band, sequence/contrast, pathology category, label
-availability, or annotating reader. [TBD: include example queries.]
-
-\subsection*{Query/preview client}\label{subsec:client}
-% OPEN DECISION: thin-client scope (recommended: optional lightweight client;
-% see CLAUDE.md). Dataset must remain fully usable without it.
-% TODO (CLAUDE.md): check whether 3D Slicer can filter by sequence (e.g., DWI);
-% if so, it may serve as (or complement) the preview client.
-A lightweight client is provided for browsing and querying the dataset over the
-relational index; the dataset is fully usable without it. [TBD: confirm whether
-3D Slicer can filter by sequence (e.g., DWI) and whether it can serve as a
-preview path.]
-
-\subsection*{Multimodal use of radiology reports}\label{subsec:multimodal}
-Where paired scrubbed radiology reports are included, they can be combined with
-the imaging for multimodal modelling --- e.g., image--text pretraining, report
-generation, or weak supervision for pathology labels.
+\subsection*{Selecting a cohort}\label{subsec:query}
+The metadata table can be filtered with standard tools (for example, pandas) to select examinations by age band, sequence or contrast, pathology category, or label availability.
 
 \subsection*{Suggested splits, intended uses, and limitations}\label{subsec:limits}
-% Recommended split handling (avoid subject leakage), intended tasks, known
-% limitations (cohort/site bias, sequence heterogeneity, label scope).
-We recommend subject-level data splits to avoid leakage across train/validation/
-test partitions. [TBD: state intended tasks and known limitations --- e.g.,
-single-site/cohort bias, heterogeneous protocols, and the scope of available
-labels.]
+We recommend subject-level data splits to avoid leakage across train, validation, and test partitions.
+The dataset is intended for the development and benchmarking of pediatric whole-body anatomical segmentation, PET-guided lesion detection and segmentation, and cross-modality and adult-to-pediatric transfer learning.
+Known limitations include the single-center origin of the cohort (Lucile Packard Children's Hospital at Stanford), heterogeneous clinical MRI protocols, a lymphoma-focused cohort with limited disease diversity, the retrospective study design, and the scope of the released labels (anatomical and tumor-lesion segmentations only, without staging labels or radiology reports).
+In addition, the PET component is FDG-only and relies on MR-based attenuation correction, which can affect quantitative uptake measures.

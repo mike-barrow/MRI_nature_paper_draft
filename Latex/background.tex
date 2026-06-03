@@ -1,73 +1,46 @@
 %%==========================================================================%%
 %% background.tex -- "Background & Summary".                                 %%
-%% Structure/boilerplate modeled on the reference Scientific Data paper.     %%
-%% Prose paraphrased and genericized for whole-body pediatric PET/MRI.       %%
-%% REWRITE and verify all claims/citations before submission. [TBD: ...] =   %%
-%% fill in.                                                                   %%
+%% Structure and style follow the AutoPET descriptor (Gatidis 2022).         %%
+%% American spelling. Cohort numbers are [TBD] pending reconciliation.       %%
 %%==========================================================================%%
 
 \section*{Background \& Summary}\label{sec:background}
 
-Whole-body positron emission tomography combined with magnetic resonance imaging (PET/MRI)
-pairs high-resolution, soft-tissue-rich anatomical information with a functional measure of metabolic activity.
-The MRI component localises and characterises tissue without exposing patients to the ionising radiation of computed tomography (CT),
-while the PET component quantifies tracer uptake and so distinguishes active disease from treated or inactive tissue.
-These complementary properties make PET/MRI central to the diagnosis, staging, and treatment monitoring of paediatric malignancies such as lymphoma,
-where avoiding cumulative radiation across repeated examinations is a primary concern [TBD: cite].
+Whole-body positron emission tomography combined with magnetic resonance imaging (PET/MRI) pairs soft-tissue-rich anatomical detail with a functional measure of metabolic activity.
+The MRI component localizes and characterizes tissue without the ionizing radiation of computed tomography (CT), while the PET component quantifies tracer uptake and so separates active disease from treated or inactive tissue.
+In pediatric oncology, and in lymphoma in particular, this pairing is well suited to diagnosis, staging, and treatment monitoring, where limiting cumulative radiation across repeated examinations is a primary concern~\cite{Kurch_2021,Masselli_2025}.
 
-% Reusable framing: image-based AI -> upstream need for whole-body anatomical
-% taxonomy + functional disease readout -> adult-only / CT-dominated gap ->
-% pediatric PET/MRI need (mirrors the abstract argument). Expand here.
-Image-based artificial intelligence (AI) tools are increasingly used across
-clinical applications, and a key upstream capability for many of them is the
-accurate identification of anatomy across the whole body, against which functional
-findings such as metabolically active lesions can then be localised and scored.
-Progress on these tasks has been enabled by several large imaging datasets.
-To date, however, these have been overwhelmingly limited to adult subjects and dominated by anatomical CT,
-with little paired functional imaging [TBD: cite].
-This adult, CT-centric focus limits paediatric adoption for three reasons.
-First, paediatric anatomy differs substantially from adult anatomy across development,
-so models calibrated on adults alone behave unpredictably on paediatric inputs [TBD: cite].
-Second, because of children's heightened sensitivity to ionising radiation,
-MRI is preferred over CT for the anatomical component of paediatric whole-body imaging,
-so adult CT corpora are of limited transfer value [TBD: cite].
-Third, anatomy alone does not capture disease activity,
-and the functional PET signal needed to detect lesions and assess treatment response is absent from these resources [TBD: cite].
+Image-based artificial intelligence (AI) increasingly supports these tasks, and a common prerequisite is the reliable identification of anatomy across the whole body, against which functional findings such as metabolically active lesions can be localized and scored.
+Progress has been driven by several large public imaging datasets, but these remain overwhelmingly adult and dominated by anatomical CT, with little paired functional imaging~\cite{Wasserthal_2023,Gatidis_2022}.
+This adult, CT-centric focus limits pediatric adoption for three reasons.
+First, pediatric anatomy changes substantially across development, so models calibrated on adults behave unpredictably on pediatric inputs~\cite{Chatterjee_2025,Laborie_2026}.
+Second, because children are more sensitive to ionizing radiation, MRI rather than CT is preferred for the anatomical component of pediatric whole-body imaging, so adult CT corpora transfer poorly~\cite{Brenner_2007,GalloBernal_2025}.
+Third, anatomy alone does not capture disease activity, and the functional PET signal needed to detect lesions and assess treatment response is absent from these resources~\cite{Barrington_2014,Cheson_2014}.
 
-% Contribution paragraph.
-To help address these entangled gaps in image coverage, appropriate modality,
-and functional disease labelling,
-we present a paediatric whole-body PET/MRI dataset of 250 whole-body examinations from
-134 patients, spanning ages 1 to 25 years (median 14).
-The annotated subsets of this collection are being expanded, and the released cohort is
-expected to grow as further annotations are completed.
-The dataset includes both disease-free follow-up
-examinations and examinations exhibiting active lymphoma, and is
-distributed in NIfTI format together with [TBD: rich indexing metadata,
-multi-reader anatomy segmentations, lesion annotations, staging and
-metabolic-response labels, and (optionally) paired de-identified radiology
-reports]. An overview of the cohort and the imaging protocols is shown in
-Figure~\ref{fig:cohort}.
+To address these entangled gaps in coverage, modality, and functional labeling, we present a pediatric whole-body PET/MRI dataset of [TBD] examinations from [TBD] patients, spanning ages [TBD] years.
+The collection includes both examinations with active lymphoma and disease-free follow-up examinations, and it is released in DICOM, with manually annotated segmentations stored as DICOM-SEG.
+The released labels comprise multi-structure anatomical segmentations and tumor-lesion segmentations, together with indexing metadata that links each examination to its imaging and annotations.
+An overview of the cohort and the imaging protocols is shown in Figure~\ref{fig:cohort}.
 
-% Reuse / impact paragraph: what the data can be used for.
-We anticipate that this dataset will support the development and benchmarking of
-paediatric whole-body anatomical and oncological analysis tools, including [TBD: anatomical
-segmentation, PET-guided lesion detection, automated staging and treatment-response
-assessment, cross-modality transfer, and report-grounded multimodal modelling].
-By providing paediatric PET/MRI with consistent organisation
-and labelling, it complements existing adult, CT-dominated resources and lowers
-the barrier to validating AI methods in paediatric settings.
+We anticipate that the dataset will support the development and benchmarking of pediatric whole-body imaging tools, including pediatric whole-body anatomical segmentation, PET-guided lesion detection and segmentation, and cross-modality and adult-to-pediatric transfer learning.
+By providing pediatric PET/MRI with consistent organization and labeling, it complements existing adult, CT-dominated resources and lowers the barrier to validating AI methods in pediatric settings.
 
 %%--------------------------------------------------------------------------%%
-%% Figure placeholder -- replace with our own figure (cf. Fig. 1 of ref:    %%
-%% distribution of presentations/pathologies and imaging protocols).        %%
+%% Figure 1 -- cohort overview (Option A, AutoPET-style). Placeholder,       %%
+%% real image pending. Distribution-panel numbers are [TBD].                 %%
 %%--------------------------------------------------------------------------%%
 \begin{figure}[t]
 \centering
-\fbox{\parbox[c][4.5cm][c]{0.85\textwidth}{\centering\itshape
-[Figure placeholder: cohort overview --- distribution of clinical
-presentations/pathologies (a) and imaging protocols/sequences per subject (b).]}}
-\caption{Overview of the cohort: distribution of clinical presentations and of
-the imaging protocols/sequences represented in the dataset. [TBD: finalise.]}
+\fbox{\parbox[c][6cm][c]{0.85\textwidth}{\centering\itshape
+[Figure 1 placeholder (Option A): (a) representative pediatric coronal PET/MR
+example with anatomy and lesion segmentation overlay. (b) cohort composition
+across the anatomy-segmentation, lesion-segmentation, and disease-free
+follow-up subsets. (c) age and sex distribution. Real image pending.]}}
+\caption{\textbf{Overview of the pediatric whole-body PET/MRI cohort.}
+(a) A representative examination, showing the coronal PET and MRI with the
+anatomical and tumor-lesion segmentation overlay.
+(b) Composition of the released cohort across the anatomy-segmentation,
+tumor-lesion-segmentation, and disease-free follow-up subsets ([TBD] numbers).
+(c) Distribution of patient age and sex ([TBD] numbers).}
 \label{fig:cohort}
 \end{figure}
