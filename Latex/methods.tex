@@ -23,17 +23,31 @@ access conditions --- see Usage Notes.]
 \subsection*{Participants}\label{subsec:cohort}
 % Reusable template: N, sex split, age (mean +/- SD), recruitment source,
 % acquisition date range, exclusions with counts.
-The dataset comprises [TBD: $N$] whole-body MRI examinations from [TBD: $N$]
-subjects ([TBD: $N$ female, $N$ male]) aged [TBD: 0--26] years at the time of
-imaging (mean $\pm$ standard deviation: [TBD: $x \pm y$] years). Subjects were
-[TBD: recruited / retrospectively identified] at [TBD: site(s)], with
-examinations acquired between [TBD: start] and [TBD: end]. Inclusion criteria
-were [TBD: e.g., diagnostic-quality whole-body coverage], and subjects were
-excluded for [TBD: reasons, with counts]. Participants represented a range of
-clinical presentations, both with and without pathology; the distribution is
-summarised in Figure~\ref{fig:cohort}, and a subject-by-subject description of
-demographic and clinical characteristics is provided in the accompanying
-metadata (Section~\ref{sec:datarecords}).
+The released cohort comprises 250 whole-body PET/MRI examinations from 134
+patients aged 1 to 25 years at the time of imaging (median 14 years; sex split
+[TBD: $N$ female, $N$ male]).
+Subjects were retrospectively identified at [TBD: site(s)], with examinations
+acquired between [TBD: start] and [TBD: end].
+The released examinations form the union of three annotated subsets, which
+partially overlap (a single examination may belong to more than one subset, so
+the subset counts do not sum to the cohort total).
+The first subset comprises 37 examinations from 36 patients with whole-body
+anatomical segmentation labels.
+The second comprises 112 examinations from 95 patients with lesion segmentation
+labels.
+The third comprises 142 disease-free follow-up examinations from 95 patients,
+each demonstrating complete metabolic response.
+The anatomy-segmentation and lesion-segmentation subsets overlap in 29
+examinations (32 patients at the patient level).
+The anatomy-segmentation subset alone spans ages 1 to 17 years (median 11), and
+is being expanded toward a larger target, so the released cohort is expected to
+grow as further annotations are completed.
+Inclusion criteria were [TBD: e.g., diagnostic-quality whole-body coverage], and
+subjects were excluded for [TBD: reasons, with counts].
+Participants represented a range of clinical presentations, both with and without
+pathology, and the distribution is summarised in Figure~\ref{fig:cohort}.
+A subject-by-subject description of demographic and clinical characteristics is
+provided in the accompanying metadata (Section~\ref{sec:datarecords}).
 
 \subsection*{Clinical MRI protocols}\label{subsec:acquisition}
 % Reusable template: scanner(s)/coil/field strength, protocol variability by

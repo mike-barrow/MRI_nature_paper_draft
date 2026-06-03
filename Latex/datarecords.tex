@@ -76,10 +76,17 @@ index is generated from the canonical plain-text tables by a published script
 \subsection*{Label records}\label{subsec:labels}
 Labels are stored so that provenance is explicit and queryable: each label is
 keyed by target anatomy and by the annotating reader (with experience level),
-and records the label type. This organisation lets users select labels by reader
-or anatomy and supports the inter-reader agreement analysis in
-Section~\ref{sec:validation}. [TBD: state file formats and folder location, e.g.,
-under a \texttt{derivatives} folder following the same layout as the imaging.]
+and records the label type.
+This organisation lets users select labels by reader or anatomy and supports the
+inter-reader agreement analysis in Section~\ref{sec:validation}.
+The released labels fall into three categories.
+Whole-body anatomical segmentation labels are provided for 37 examinations.
+Lesion segmentation labels are provided for 112 examinations.
+A further 142 examinations are disease-free follow-up scans demonstrating
+complete metabolic response, recorded as such so they can be selected as
+pathology-negative references.
+[TBD: state file formats and folder location, e.g., under a \texttt{derivatives}
+folder following the same layout as the imaging.]
 
 \subsection*{Radiology reports}\label{subsec:reports}
 % NEW component: optional de-identified ("scrubbed") radiology reports paired with
