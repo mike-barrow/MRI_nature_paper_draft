@@ -9,7 +9,7 @@ This workspace is for authoring a **dataset paper** targeting Nature's
 A **pediatric whole-body PET/MRI dataset**.
 
 ### Dataset characteristics
-- **Modality / format:** whole-body **PET/MRI**, released as **DICOM** (TCIA),
+- **Modality / format:** whole-body **PET/MRI**, released as **DICOM**,
   segmentations as **DICOM-SEG**. (NIfTI conversions pending a question to Michael.)
 - **Scope:** [TBD] examinations (target ~[TBD]).
 - **Age range:** [TBD] years (pediatric through young adult).
@@ -26,7 +26,7 @@ A **pediatric whole-body PET/MRI dataset**.
 - **Template:** the manuscript follows the **AutoPET data descriptor** (Gatidis
   et al. 2022, *Sci Data* 9:601, `s41597-022-01718-3`) as the primary
   structural and stylistic model. AutoPET is whole-body PET oncology with lesion
-  segmentation, on TCIA under CC BY 4.0, co-authored by our TCIA contact Sergios
+  segmentation, on TCIA under CC BY 4.0, co-authored by Sergios
   Gatidis. The earlier brain-MRI taxonomy paper (`s41597-026-07379-w`) is the
   retired template; borrow from it only the acquisition-parameter-table device
   and its explicit access-description discipline.
@@ -47,7 +47,7 @@ A **pediatric whole-body PET/MRI dataset**.
   - `abstract.tex` — abstract (hand-written by Michael, pending a revision pass).
   - `background.tex` — Background & Summary (pediatric whole-body PET/MRI motivation, with citations).
   - `methods.tex` — Ethics, Participants, Image acquisition (PET + MRI), Data processing, Annotation.
-  - `datarecords.tex` — TCIA DICOM hierarchy, per-examination metadata CSV, label records.
+  - `datarecords.tex` — DICOM hierarchy, per-examination metadata CSV, label records.
   - `validation.tex` — expert image-quality screen, inter-reader agreement, data integrity, baseline.
   - `usagenotes.tex` — access conditions, reading the data, cohort selection, suggested splits and limitations.
   - `codeavailability.tex` — code availability statement.
@@ -70,11 +70,11 @@ A **pediatric whole-body PET/MRI dataset**.
 - **Acknowledgements:** none (optional section omitted).
 - **Data format:** DICOM only, with segmentations as DICOM-SEG. Whether to also ship NIfTI conversions is an open question for Michael.
 - **Released components:** imaging (DICOM), anatomical segmentations, tumor-lesion segmentations, disease-free follow-up examinations, and indexing metadata. No radiology reports, and no staging or metabolic-response labels in the public release.
-- **Host:** TCIA, open under CC BY 4.0. The descriptor names a single host of record.
-- **De-identification:** to a HIPAA standard, most likely through the TCIA submission pipeline, with whole-body defacing of the MR and PET and a per-subject date shift. Verified by the host after deposit.
+- **Host:** undecided. Scientific Data mandates no imaging repository, so the choice is open. Candidates: Stanford AIMI (controlled-access Research Use Agreement) or an open repository under CC0 / CC-BY after sufficient de-identification and defacing. Pre-submission inquiries to the Scientific Data chief editor (Guy Jones) and to AIMI are sent and awaiting replies. The open-versus-controlled-access lane drives the license and is still open, so the manuscript leaves repository, accession, DOI, and license as `[TBD]`.
+- **De-identification:** to a HIPAA standard, most likely through the host repository's submission pipeline, with whole-body defacing of the MR and PET and a per-subject date shift. Verified by the host after deposit.
 - **Spelling:** American English throughout the body (matches the title). The abstract is the one exception, pending revision.
 - **PET acquisition:** tracer is FDG in all examinations. The Methods acquisition section covers both PET and MRI.
-- **Data Records:** TCIA DICOM hierarchy plus a per-examination metadata CSV plus label records (no BIDS, no SQLite index, no Croissant, no separate query client).
+- **Data Records:** DICOM hierarchy plus a per-examination metadata CSV plus label records (no BIDS, no SQLite index, no Croissant, no separate query client).
 - **Technical Validation:** an expert image-quality screen flags non-diagnostic scans. Whether to publish a trained segmentation baseline, inter-reader agreement, or both is still open.
 - **Bibliography:** `references.bib` holds the cited references, and the Springer Nature style `sn-nature.bst` is included in `Latex/` so the bibliography builds.
 - **Figures and tables:** `fig:cohort` (cohort overview) and `fig:workflow` are placeholders pending real images; `tab:acq`, `tab:qc`, `tab:vars` pending values.
@@ -93,9 +93,9 @@ All quantitative cohort numbers are intentionally left `[TBD]` for now, to be fi
 - Technical Validation: decide whether to publish the trained model, the inter-reader agreement, or both (`validation.tex`).
 - Usage Notes access conditions: de-id status, access model, license, timelines, commercial-use terms (`usagenotes.tex`).
 - Code Availability: confirm which code, if any, is released and where (`codeavailability.tex`).
-- TCIA submission: obtain the accession number, DOI, and final access conditions once the collection is set up (`main.tex`, `datarecords.tex`, `usagenotes.tex`).
+- Repository submission: obtain the accession number, DOI, and access conditions once the host is decided (`main.tex`, `datarecords.tex`, `usagenotes.tex`).
 - De-identification and defacing pipeline.
-- AIMI and hosting: confirm with Scientific Data whether AIMI can serve as the host (inquiry drafted).
+- Host decision: resolve the repository and the open-versus-controlled-access lane. Pre-submission inquiries to the Scientific Data editor (Guy Jones) and to AIMI are sent and awaiting replies.
 - Decide whether a precursor publication is needed before the descriptor.
 
 **Michael**

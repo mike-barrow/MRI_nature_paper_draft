@@ -13,7 +13,7 @@
 The study was approved by [TBD -> Heike: approving IRB and protocol number], and all procedures were carried out in accordance with the Declaration of Helsinki and the Health Insurance Portability and Accountability Act (HIPAA).
 The data are shared under [TBD -> Heike: legal basis and consent model, e.g. an IRB-approved waiver of informed consent for retrospective de-identified data].
 % Planned de-identification (pending Stanford Privacy Office certification):
-% HIPAA Safe Harbor + whole-body defacing of MR and PET, enabling open CC BY 4.0.
+% HIPAA Safe Harbor + whole-body defacing of MR and PET.
 [TBD: de-identification status of the released data and the resulting access conditions (see the Usage Notes).]
 
 \subsection*{Participants}\label{subsec:cohort}
@@ -61,11 +61,11 @@ Orientation        & [TBD] & [TBD] & [TBD] \\
 
 \subsection*{Data processing}\label{subsec:curation}
 % DICOM-only release. Segmentation output format (NIfTI vs DICOM-SEG) is TBD.
-% De-identification most likely handled by the TCIA submission pipeline
-% (CTP/Posda), TBD. Report scrubbing removed: reports are not part of the release.
+% De-identification most likely handled by the host repository's submission
+% pipeline, TBD. Report scrubbing removed: reports are not part of the release.
 The released imaging is provided in its native DICOM format.
 Manual segmentations, produced as described below, are released as [TBD: NIfTI or DICOM-SEG] label volumes aligned to the corresponding imaging.
-De-identification of the imaging is performed to a HIPAA-compliant standard [TBD: most likely through the host repository's submission pipeline, e.g. the TCIA CTP/Posda tools], including removal of protected health information from the DICOM headers and, where head-inclusive coverage permits facial reconstruction, removal of identifiable facial features (defacing) [TBD: tool and parameters].
+De-identification of the imaging is performed to a HIPAA-compliant standard [TBD: through the host repository's submission pipeline], including removal of protected health information from the DICOM headers and, where head-inclusive coverage permits facial reconstruction, removal of identifiable facial features (defacing) [TBD: tool and parameters].
 An overview of data collection, acquisition, and processing is presented in Figure~\ref{fig:workflow}.
 
 \subsection*{Annotation and labeling}\label{subsec:annotation}

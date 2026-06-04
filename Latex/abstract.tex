@@ -7,14 +7,11 @@
 %% with the \abstract{...} block below).                                     %%
 %%==========================================================================%%
 
-\abstract{Recently, image-based AI tools have shown great promise across clinical applications,
-and a key upstream task is the accurate identification of anatomy, against which metabolically active lesions can be localized.
-Although several datasets support whole-body anatomical analysis, to date they have been limited to adults,
-which has hampered pediatric adoption, since models calibrated on adults perform unpredictably on pediatric inputs.
-Adult whole-body CT datasets are also of limited use,
-because MRI is preferred in children to reduce radiation exposure, and anatomy alone does not capture disease activity.
-What is needed, therefore, is a whole-body pediatric PET/MRI dataset that addresses these entangled gaps in coverage, modality, and functional labeling.
-We therefore present a pediatric whole-body PET/MRI dataset of [TBD] examinations, spanning ages [TBD],
-with active lymphoma and disease-free follow-up examinations and their anatomical and tumor-lesion segmentations.
-We describe the dataset's acquisition, organization, and validation,
-and discuss its use for developing and benchmarking pediatric whole-body anatomical and oncological analysis tools.}
+\abstract{Whole-body PET/MRI is well established in pediatric oncology,
+yet the public datasets that drive medical image analysis are almost entirely adult and CT-based,
+and models built on them generalize poorly to children.
+We present a pediatric whole-body PET/MRI dataset of [TBD] examinations from [TBD] patients (ages [TBD] years).
+Each examination pairs anatomical MRI with functional FDG-PET,
+and the release provides multi-structure anatomical segmentations spanning the skeleton and major organs, tumor-lesion segmentations, and disease-free follow-up examinations as pathology-negative references.
+We describe the cohort, acquisition, organization, and technical validation,
+and outline its use for pediatric whole-body anatomical segmentation, PET-guided lesion detection, and adult-to-pediatric transfer learning.}

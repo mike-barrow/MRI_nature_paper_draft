@@ -1,17 +1,17 @@
 %%==========================================================================%%
 %% datarecords.tex -- "Data Records".                                        %%
-%% TCIA DICOM release (AutoPET-shaped): DICOM hierarchy + a per-examination   %%
+%% DICOM release (AutoPET-shaped): DICOM hierarchy + a per-examination   %%
 %% metadata CSV + label records. American spelling. Cohort numbers are       %%
 %% [TBD] pending reconciliation.                                             %%
 %%==========================================================================%%
 
 \section*{Data Records}\label{sec:datarecords}
 
-The dataset is deposited in The Cancer Imaging Archive (TCIA) under accession [TBD -> TCIA] with the Digital Object Identifier [TBD -> TCIA], and is released under a Creative Commons Attribution 4.0 International (CC BY 4.0) license.
+The dataset is deposited in [TBD: repository] under accession [TBD] and Digital Object Identifier [TBD], under [TBD: license, pending the open-versus-controlled-access decision].
 The imaging, segmentation labels, and accompanying metadata are organized as described below.
 
 \subsection*{File organization}\label{subsec:layout}
-The imaging follows the standard TCIA DICOM hierarchy.
+The imaging follows the standard DICOM hierarchy.
 Each subject contains one or more imaging studies (examinations), and each study contains the PET and MRI series acquired in that session.
 Studies and series are identified by their DICOM unique identifiers, which are remapped during de-identification, and a per-subject date offset is applied so that the relative timing between a subject's examinations is preserved.
 
