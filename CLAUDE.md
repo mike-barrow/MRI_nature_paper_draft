@@ -48,12 +48,12 @@ A **pediatric whole-body PET/MRI dataset**.
   - `background.tex` — Background & Summary (pediatric whole-body PET/MRI motivation, with citations).
   - `methods.tex` — Ethics, Participants, Image acquisition (PET + MRI), Data processing, Annotation.
   - `datarecords.tex` — DICOM hierarchy, per-examination metadata CSV, label records.
-  - `validation.tex` — expert image-quality screen, inter-reader agreement, data integrity, baseline.
+  - `validation.tex` — inter-reader agreement, data integrity, baseline.
   - `usagenotes.tex` — access conditions, reading the data, cohort selection, suggested splits and limitations.
   - `codeavailability.tex` — code availability statement.
   - `references.bib` — cited references.
 - Figures are compiling `\fbox` placeholders (`fig:cohort`, `fig:workflow`), to be
-  replaced with real images. Placeholder tables: `tab:acq`, `tab:qc`, `tab:vars`.
+  replaced with real images. Placeholder tables: `tab:acq`, `tab:vars`.
 - SUBMISSION NOTE: SN wants a single `.tex`. Before submission, inline all
   `\input{}` files into `main.tex` and paste the `.bbl` in place of
   `\bibliography`.
@@ -75,9 +75,9 @@ A **pediatric whole-body PET/MRI dataset**.
 - **Spelling:** American English throughout the body (matches the title). The abstract is the one exception, pending revision.
 - **PET acquisition:** tracer is FDG in all examinations. The Methods acquisition section covers both PET and MRI.
 - **Data Records:** DICOM hierarchy plus a per-examination metadata CSV plus label records (no BIDS, no SQLite index, no Croissant, no separate query client).
-- **Technical Validation:** an expert image-quality screen flags non-diagnostic scans. Whether to publish a trained segmentation baseline, inter-reader agreement, or both is still open.
+- **Technical Validation:** Whether to publish a trained segmentation baseline, inter-reader agreement, or both is still open.
 - **Bibliography:** `references.bib` holds the cited references, and the Springer Nature style `sn-nature.bst` is included in `Latex/` so the bibliography builds.
-- **Figures and tables:** `fig:cohort` (cohort overview) and `fig:workflow` are placeholders pending real images; `tab:acq`, `tab:qc`, `tab:vars` pending values.
+- **Figures and tables:** `fig:cohort` (cohort overview) and `fig:workflow` are placeholders pending real images; `tab:acq`, `tab:vars` pending values.
 
 All quantitative cohort numbers are intentionally left `[TBD]` for now, to be filled in one pass once the counts are reconciled.
 
@@ -110,7 +110,6 @@ All quantitative cohort numbers are intentionally left `[TBD]` for now, to be fi
 - Exact per-author affiliation strings (`main.tex`).
 - Approving IRB and protocol number for the released cohort (`methods.tex`).
 - Legal basis and consent model, for example an IRB-approved waiver of informed consent (`methods.tex`).
-- Name the board-certified radiologist for the image-quality review (`validation.tex`).
 
 ### Questions for Michael
 1. For the descriptor, do we keep the AIMI poster author set (Horvath, Barrow, Singh, Lokesha, Okpokpo, Gatidis, Daldrup-Link), and are you good with an all-authors-contributed-equally model (no designated first author)?
