@@ -1,33 +1,10 @@
 %%==========================================================================%%
 %% validation.tex -- "Technical Validation".                                 %%
-%% Expert image-QC screens for non-diagnostic scans that limit reliable      %%
-%% annotation, not a rubber-stamp of the human segmentations. Inter-reader   %%
-%% agreement and a trained baseline are both candidate validation evidence,  %%
-%% TBD which to publish. American spelling.                                  %%
+%% Inter-reader agreement and a trained baseline are both candidate          %%
+%% validation evidence, TBD which to publish. American spelling.             %%
 %%==========================================================================%%
 
 \section*{Technical Validation}\label{sec:validation}
-
-\subsection*{Expert image-quality assessment}\label{subsec:imgqc}
-Each examination underwent a scan-by-scan image-quality assessment by [TBD -> Heike: a board-certified radiologist], who rated diagnostic image quality on a 5-point Likert scale ranging from 1 (non-diagnostic) to 5 (perfect quality), as defined in Table~\ref{tab:qc}.
-The purpose of this screening is to identify examinations whose image quality is too low for reliable annotation, rather than to confirm that the segmentations are correct.
-[TBD: report the distribution of scores, the qc\_status threshold, and the number of examinations flagged or excluded as a result.]
-
-%%-- Quality-scoring table -------------------------------------------------%%
-\begin{table}[h]
-\caption{Image-quality scoring scale used by the expert reviewer.}\label{tab:qc}
-\begin{tabular}{@{}cl@{}}
-\toprule
-Score & Description \\
-\midrule
-5 & Perfect scan, no artifacts. \\
-4 & Mild artifacts, fully diagnostic. \\
-3 & Mild to moderate artifacts, repeat if an abnormality were noticed. \\
-2 & Substantial artifacts, large abnormalities discernible but repeat needed. \\
-1 & Completely non-diagnostic. \\
-\botrule
-\end{tabular}
-\end{table}
 
 \subsection*{Inter-reader agreement}\label{subsec:agreement}
 % TBD whether inter-reader agreement, a trained baseline, or both serve as the
