@@ -1,0 +1,95 @@
+%%==========================================================================%%
+%% validation.tex -- "Technical Validation".                                  %%
+%% The section reviewers weight most. Demonstrates the data are FIT FOR        %%
+%% PURPOSE, not a benchmark and not a results claim. Subsections mirror the    %%
+%% pelvic-template structure: label-quality QC, inter-reader agreement,        %%
+%% qualitative scoring, and a fit-for-purpose trained baseline. Metric values  %%
+%% are [TBD]. Report confidence intervals, never bare means. American         %%
+%% spelling.                                                                   %%
+%%==========================================================================%%
+
+\section*{Technical Validation}\label{sec:validation}
+
+The analyses in this section assess whether the released segmentation labels are of sufficient quality and consistency for the intended reuse, and whether the data support the development of a usable pediatric whole-body anatomy-segmentation model.
+They are reported as evidence of fitness for purpose and not as scientific findings.
+
+\subsection*{Label-quality and image-quality screening}\label{subsec:qc}
+Each labeled examination was screened by an experienced reader to confirm that the imaging is of diagnostic quality and that the segmentation covers the intended structures without gross error.
+Because the segmentations are produced and corrected by trained readers, this screen functions chiefly to exclude examinations whose image quality is too low to support reliable contouring rather than to grade otherwise usable labels.
+Examinations that failed the screen were excluded, and the counts are reported in the Participants subsection (Section~\ref{sec:methods}).
+[TBD: report the number screened and the number excluded.]
+
+\subsection*{Inter-reader agreement}\label{subsec:agreement}
+To quantify the reliability of the manual labels, a subset of examinations was segmented independently by more than one reader, and agreement between readers was measured.
+Per-structure overlap between readers was measured with the Dice similarity coefficient, and a chance-corrected agreement statistic was computed to account for agreement expected by chance [TBD: state the statistic used, for example Gwet AC2 or Krippendorff alpha, and add its methods citation].
+Agreement is reported per structure with 95\% confidence intervals, and never as a bare mean.
+Figure~\ref{fig:agreement} shows the per-structure agreement, and Table~\ref{tab:metrics} reports the values.
+[TBD: number of multiply-annotated examinations, number of readers, and the per-structure Dice and chance-corrected agreement values with confidence intervals.]
+
+\subsection*{Qualitative rating}\label{subsec:likert}
+In addition to the overlap analysis, readers rated label quality on a five-point ordinal scale, with at least two readers per examination, so that label adequacy is captured by a direct expert judgment alongside the geometric overlap measures.
+The rating distribution is reported per structure [TBD: report the rating distribution and the number of readers].
+
+\subsection*{Fit-for-purpose segmentation baseline}\label{subsec:baseline}
+To demonstrate that the released labels are sufficient to train a usable pediatric whole-body MRI anatomy-segmentation model, a baseline model was trained on the segmentation subset using an established self-configuring segmentation framework~\cite{Isensee_2021} and evaluated on a held-out portion of the subset.
+Segmentation quality was measured with the Dice similarity coefficient and the 95th-percentile Hausdorff distance (HD95), reported per structure with 95\% confidence intervals obtained by bootstrap resampling.
+For context, the same held-out examinations were also segmented with an adult-trained whole-body MRI tool~\cite{Wasserthal_2025} applied without further training, which provides a reference point for the difficulty of the pediatric anatomy and is reported only to characterize the data, not as a comparative result.
+The values are reported in Table~\ref{tab:metrics} and illustrated qualitatively in Figure~\ref{fig:baseline}.
+These figures are drawn from the separate study that developed the model on this dataset~\cite{[TBD: companion findings publication, cite once available]}, and they are presented here as evidence that the data are fit for the intended segmentation task.
+[TBD: per-structure Dice and HD95 values with confidence intervals for the baseline and the adult-trained reference, the size of the held-out set, and the availability of the trained model and the training and evaluation scripts.]
+
+%%-- Per-structure metric table placeholder -------------------------------%%
+\begin{table}[h]
+\caption{Label-quality and fit-for-purpose metrics per structure. Inter-reader agreement is the Dice similarity coefficient and a chance-corrected statistic between independent readers. Baseline performance is the Dice similarity coefficient and the 95th-percentile Hausdorff distance (HD95) of a model trained on the released labels, with an adult-trained reference for context. All values are reported with 95\% confidence intervals [TBD: complete from the analysis].}\label{tab:metrics}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+ & \multicolumn{2}{c}{Inter-reader agreement} & \multicolumn{2}{c}{Baseline (trained on released labels)} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Structure & Dice & Chance-corrected & Dice & HD95 [mm] \\
+\midrule
+Femur (L/R)           & [TBD] & [TBD] & [TBD] & [TBD] \\
+Tibia (L/R)           & [TBD] & [TBD] & [TBD] & [TBD] \\
+Fibula (L/R)          & [TBD] & [TBD] & [TBD] & [TBD] \\
+Humerus (L/R)         & [TBD] & [TBD] & [TBD] & [TBD] \\
+Hip (L/R)             & [TBD] & [TBD] & [TBD] & [TBD] \\
+Spine                 & [TBD] & [TBD] & [TBD] & [TBD] \\
+Sacrum                & [TBD] & [TBD] & [TBD] & [TBD] \\
+Lung (L/R)            & [TBD] & [TBD] & [TBD] & [TBD] \\
+Kidney (L/R)          & [TBD] & [TBD] & [TBD] & [TBD] \\
+Liver                 & [TBD] & [TBD] & [TBD] & [TBD] \\
+Spleen                & [TBD] & [TBD] & [TBD] & [TBD] \\
+Heart                 & [TBD] & [TBD] & [TBD] & [TBD] \\
+Urinary bladder       & [TBD] & [TBD] & [TBD] & [TBD] \\
+\botrule
+\end{tabular}
+\end{table}
+
+\subsection*{Metadata and data integrity}\label{subsec:integrity}
+The integrity and internal consistency of the release were verified by schema validation of the metadata table, checks of referential consistency between the metadata and the imaging and label files, and per-file checksums.
+The data additionally pass the curation and validation performed by the host repository as part of submission [TBD: confirm against the chosen host].
+
+%%-- Inter-reader agreement figure placeholder ----------------------------%%
+\begin{figure}[t]
+\centering
+\fbox{\parbox[c][5cm][c]{0.85\textwidth}{\centering\itshape
+[Figure 3 placeholder: per-structure inter-reader agreement, Dice similarity
+coefficient and the chance-corrected statistic, with error bars showing 95\%
+confidence intervals. Stat treatment to be stated in the legend. Real figure
+pending the inter-reader study.]}}
+\caption{\textbf{Inter-reader agreement of the manual anatomy segmentations.}
+Per-structure agreement between independent readers, measured by the Dice similarity coefficient and a chance-corrected statistic, with error bars showing 95\% confidence intervals. [TBD: state the number of readers, the number of multiply-annotated examinations, and the statistical treatment in the legend.]}
+\label{fig:agreement}
+\end{figure}
+
+%%-- Baseline qualitative figure placeholder ------------------------------%%
+\begin{figure}[t]
+\centering
+\fbox{\parbox[c][5cm][c]{0.85\textwidth}{\centering\itshape
+[Figure 4 placeholder: qualitative comparison of segmentation surfaces on
+held-out examinations, the model trained on the released labels alongside an
+adult-trained reference tool, framed as fitness-for-purpose evidence. Real
+figure pending the baseline predictions.]}}
+\caption{\textbf{Qualitative segmentation surfaces on held-out examinations.}
+Representative segmentation surfaces produced by a model trained on the released labels, shown alongside an adult-trained reference tool applied without further training, illustrating that the released labels support a usable pediatric whole-body anatomy-segmentation model. [TBD: finalize panel content.]}
+\label{fig:baseline}
+\end{figure}

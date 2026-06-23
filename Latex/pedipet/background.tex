@@ -1,0 +1,56 @@
+%%==========================================================================%%
+%% background.tex -- "Background & Summary".                                  %%
+%% Structure and style follow the AutoPET descriptor (Gatidis 2022).         %%
+%% American spelling. No subjective novelty, impact, or utility claims.       %%
+%% Cohort numbers are [TBD] pending reconciliation.                          %%
+%%==========================================================================%%
+
+\section*{Background \& Summary}\label{sec:background}
+
+Whole-body positron emission tomography with [$^{18}$F]fluorodeoxyglucose (FDG-PET) pairs a functional measure of tissue metabolism with anatomical context.
+Combined with magnetic resonance imaging (MRI), it supports diagnosis, staging, and treatment monitoring in pediatric oncology, and in lymphoma in particular, where the metabolic signal separates active disease from treated or inactive tissue and the response of FDG-avid lesions guides therapy~\cite{Kurch_2021,Barrington_2014,Barrington_2017}.
+Whole-body PET/MRI is well suited to children because the MRI component replaces the computed tomography (CT) of a conventional PET/CT examination, removing the CT radiation dose at each of the repeated examinations a treatment course requires~\cite{Masselli_2025,Brenner_2007,GalloBernal_2025}.
+
+Automated analysis of FDG-PET, in particular the detection and segmentation of metabolically active tumor lesions, depends on annotated training data.
+The public datasets that have driven progress in this area are almost entirely adult and acquired as PET/CT.
+The whole-body FDG-PET/CT lesion dataset and the subsequent community challenge built on it established the value of openly shared, lesion-annotated PET data for this task~\cite{Gatidis_2022,Gatidis_2024}.
+Pediatric whole-body PET/MRI with lesion annotations is, by contrast, scarce.
+This matters because pediatric anatomy and physiology differ from those of adults, and segmentation and detection models trained on adult data generalize poorly to children~\cite{Chatterjee_2025,Laborie_2026}.
+The substitution of MR-based for CT-based imaging compounds the gap, because adult PET/CT corpora do not provide the paired MRI that pediatric whole-body imaging relies on.
+
+To help close this gap in population, modality, and label availability, we present a single-center retrospective cohort of pediatric and young-adult lymphoma patients imaged with whole-body FDG-PET and paired MRI at Lucile Packard Children's Hospital at Stanford.
+The release comprises [TBD] whole-body examinations across patients aged [TBD] years.
+Its labeled components are manually drawn tumor-lesion segmentations on the FDG-avid examinations, covering approximately [TBD] examinations, together with approximately [TBD] disease-free follow-up examinations that serve as pathology-negative references, an arrangement that parallels the negative controls of the adult whole-body FDG-PET/CT lesion dataset~\cite{Gatidis_2022}.
+Imaging is provided in DICOM and segmentation labels as DICOM-SEG, and indexing metadata links each examination to its imaging and labels.
+The collection is organized to support FAIR data principles for reuse~\cite{Wilkinson_2016}.
+An overview of the cohort and the imaging protocols is shown in Figure~\ref{fig:cohort}.
+
+This dataset is one of two complementary releases drawn from the same single-center pediatric whole-body PET/MRI cohort, split by the labeled task rather than by imaging modality.
+The present dataset carries the tumor-lesion-segmentation task, comprising the PET, the paired MRI, the lesion segmentations, and the disease-free references.
+A companion descriptor carries the anatomy-segmentation task, comprising the MRI and multi-structure anatomical segmentations of the skeleton and major organs.
+Because the two releases share one cohort, the paired MRI series released here are co-acquired with those released in the companion descriptor, and approximately [TBD] examinations from [TBD] patients appear in both releases.
+Each dataset is self-contained, carries a distinct label set, and serves a distinct primary reuse task, and neither reports analytical findings.
+The companion descriptor is cross-referenced in the Usage Notes.
+It cannot yet be cited as a numbered data citation because it does not yet have an assigned Digital Object Identifier.
+
+We anticipate that the dataset will support the development and benchmarking of pediatric whole-body PET analysis tools, including automated PET-guided lesion detection and segmentation, metabolic tumor-burden quantification, and cross-modality and adult-to-pediatric transfer learning.
+By providing pediatric PET/MRI with consistent organization and lesion labels, it complements the existing adult, CT-dominated resources and lowers the barrier to validating these methods in pediatric settings.
+
+%%--------------------------------------------------------------------------%%
+%% Figure 1 -- cohort overview (AutoPET-style). Placeholder, real image       %%
+%% pending. Distribution-panel numbers are [TBD].                            %%
+%%--------------------------------------------------------------------------%%
+\begin{figure}[t]
+\centering
+\fbox{\parbox[c][6cm][c]{0.85\textwidth}{\centering\itshape
+[Figure 1 placeholder: (a) a representative pediatric whole-body coronal
+FDG-PET and paired MRI with a tumor-lesion segmentation overlay, (b)
+composition of the released cohort across the lesion-segmentation subset and
+the disease-free follow-up reference subset, (c) distribution of patient age
+and sex. Real image pending, sans-serif, white background at submission.]}}
+\caption{\textbf{Overview of the pediatric whole-body FDG-PET/MRI lymphoma cohort.}
+(a)~A representative examination showing the coronal FDG-PET and paired MRI with the tumor-lesion segmentation overlay.
+(b)~Composition of the released cohort across the tumor-lesion-segmentation subset and the disease-free follow-up reference subset ([TBD] examinations each).
+(c)~Distribution of patient age and sex ([TBD]).}
+\label{fig:cohort}
+\end{figure}

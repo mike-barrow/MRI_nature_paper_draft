@@ -1,0 +1,144 @@
+%%==========================================================================%%
+%% main.tex -- Data Descriptor for a pediatric whole-body FDG-PET/MRI         %%
+%% lymphoma dataset with tumor-lesion segmentations, targeting Nature         %%
+%% Scientific Data.                                                           %%
+%%                                                                            %%
+%% Built on the Springer Nature article template (sn-jnl.cls). Scientific     %%
+%% Data is a Nature Portfolio journal, so the Nature reference style          %%
+%% (sn-nature) is selected.                                                   %%
+%%                                                                            %%
+%% Section structure follows the Scientific Data "Data Descriptor" format:    %%
+%%   Background & Summary -> Methods -> Data Records -> Technical Validation   %%
+%%   -> Usage Notes -> Data Availability -> Code Availability, plus the        %%
+%%   standard back matter.                                                    %%
+%%                                                                            %%
+%% NOTE ON SUBMISSION: Springer Nature requires the manuscript as a single    %%
+%% .tex file with references embedded in the body. This working draft uses    %%
+%% \input{} and \bibliography{references} for convenience. Before submission, %%
+%% inline each section file and paste the .bbl in place of \bibliography.     %%
+%%==========================================================================%%
+
+\documentclass[pdflatex,sn-nature]{sn-jnl}% Nature Portfolio reference style
+
+%%%% Standard Packages
+\usepackage{graphicx}%
+\usepackage{multirow}%
+\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{amsthm}%
+\usepackage{mathrsfs}%
+\usepackage[title]{appendix}%
+\usepackage{xcolor}%
+\usepackage{textcomp}%
+\usepackage{manyfoot}%
+\usepackage{booktabs}%
+\usepackage{algorithm}%
+\usepackage{algorithmicx}%
+\usepackage{algpseudocode}%
+\usepackage{listings}%
+
+\raggedbottom
+
+\begin{document}
+
+%%=============================================================%%
+%% Title: descriptive, no colon, no parentheses, no brand name, no advertising
+%% words. Under 110 characters including spaces. Capitalize only the first
+%% word and proper nouns. The bracketed running head is the short title.
+%%=============================================================%%
+
+\title[Pediatric whole-body FDG-PET/MRI lymphoma dataset]{A pediatric whole-body FDG-PET and MRI lymphoma dataset with manually annotated tumor lesions}
+
+%%=============================================================%%
+%% Author / affiliation block.
+%% AUTHORSHIP: author set and order are unsettled. All authors are marked as
+%% having contributed equally, with no first author designated.
+%% Author names, affiliation strings, corresponding author, and institutional
+%% email are all [TBD].
+%%=============================================================%%
+
+\author*[1,2]{\fnm{[TBD]} \sur{[TBD]}}\email{[TBD]}
+\equalcont{These authors contributed equally to this work.}
+
+\author[1]{\fnm{[TBD]} \sur{[TBD]}}\email{[TBD]}
+\equalcont{These authors contributed equally to this work.}
+
+\author[1]{\fnm{[TBD]} \sur{[TBD]}}\email{[TBD]}
+\equalcont{These authors contributed equally to this work.}
+
+\affil*[1]{\orgdiv{[TBD: Department of Radiology]}, \orgname{[TBD: Stanford University School of Medicine]}, \orgaddress{\city{Stanford}, \state{CA}, \country{USA}}}
+
+\affil[2]{\orgdiv{[TBD: affiliation]}, \orgname{[TBD: Heidelberg University]}, \orgaddress{\city{Heidelberg}, \country{Germany}}}
+
+%%================================%%
+%% Abstract (kept in abstract.tex for the working draft).
+%%================================%%
+
+\input{abstract}
+
+\keywords{pediatric imaging, whole-body imaging, FDG-PET, MRI, lymphoma, tumor-lesion segmentation, DICOM}
+
+\maketitle
+
+%%==========================================================================%%
+%% Section bodies are kept in separate files for the working draft.           %%
+%% Before submission, inline them into this single .tex file (SN requirement). %%
+%%==========================================================================%%
+
+\input{background}
+
+\input{methods}
+
+\input{datarecords}
+
+\input{validation}
+
+\input{usagenotes}
+
+%%==========================================================================%%
+\backmatter
+%%==========================================================================%%
+
+%%================================%%
+%% Data Availability (required, a separate statement). Some duplication of
+%% Data Records is expected. Host, accession, DOI, and license are [TBD]
+%% pending the open-versus-controlled-access decision.
+%%================================%%
+
+\section*{Data availability}\label{sec:dataavail}
+The dataset described here is deposited at [TBD: repository] under accession [TBD] and is available at [TBD: Digital Object Identifier].
+Imaging is provided in DICOM and segmentation labels as DICOM-SEG.
+Access conditions and license are [TBD], pending the decision between open download and credentialed controlled access.
+The reference dataset used as the adult comparator for technical validation is the publicly available whole-body FDG-PET/CT lesion dataset~\cite{Gatidis_2022_data}.
+
+%%================================%%
+%% Code Availability (required), placed immediately before the references.
+%%================================%%
+
+\input{codeavailability}
+
+\bibliography{references}% bib database for this manuscript
+
+%%================================%%
+%% Author Contributions (required). CRediT-style. Roles are [TBD], gated on
+%% the author-order and first-author decision.
+%%================================%%
+
+\section*{Author contributions}\label{sec:contrib}
+[TBD: per-author contribution statement, to be finalized once the author list and first-author designation are settled.]
+All authors reviewed and approved the manuscript.
+
+%%================================%%
+%% Competing Interests (required).
+%%================================%%
+
+\section*{Competing interests}\label{sec:coi}
+[TBD: competing-interests statement, including any licensing or patent relationships to be disclosed.]
+
+%%================================%%
+%% Funding (required).
+%%================================%%
+
+\section*{Funding}\label{sec:funding}
+[TBD: funding statement.]
+
+\end{document}

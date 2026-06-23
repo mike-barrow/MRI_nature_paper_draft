@@ -1,0 +1,34 @@
+%%==========================================================================%%
+%% usagenotes.tex -- "Usage Notes".                                          %%
+%% Technical reuse and access notes only. NOT a conclusions section and no    %%
+%% selling points. DICOM tooling, SUV conversion, suggested splits, and the   %%
+%% stated limitations. American spelling.                                    %%
+%%==========================================================================%%
+
+\section*{Usage Notes}\label{sec:usage}
+
+\subsection*{Accessing the imaging and metadata}\label{subsec:access}
+The imaging is distributed in DICOM and can be read with standard tools such as pydicom, dcm2niix, 3D~Slicer, and MITK.
+The tumor-lesion segmentations are distributed as DICOM-SEG and can be read with the same tools.
+The accompanying plain-text metadata table (CSV) can be loaded with any standard data-analysis tooling.
+
+\subsection*{Standardized-uptake-value conversion}\label{subsec:suv}
+PET intensities in the released DICOM are in the units recorded in the headers.
+Quantitative analysis should apply the SUV conversion using the injected activity, the body weight, and the acquisition timing recorded in the DICOM headers, and the released conversion utilities perform this conversion (Section~\ref{sec:code}).
+
+\subsection*{Selecting a cohort and suggested splits}\label{subsec:query}
+The metadata table can be filtered with standard tooling to select examinations by lymphoma class, by labeled subset (lesion-positive or disease-free reference), by age, or by available sequences.
+We recommend subject-level data splits, keeping all examinations from a given patient within a single partition, to avoid leakage across the training, validation, and test sets.
+
+\subsection*{Limitations and scope}\label{subsec:limits}
+Several properties of the dataset bear on its reuse.
+The cohort is single-center, retrospective, and limited to lymphoma, so disease diversity is narrow and the imaging reflects the protocols of one institution.
+The PET component uses a single tracer, FDG, and relies on MR-based attenuation correction rather than CT-based attenuation correction, which can introduce bias into quantitative uptake measures and should be considered when SUV-derived quantities are compared with PET/CT-derived values.
+The MRI protocols are heterogeneous because they were determined by clinical indication, so the available sequences vary across examinations.
+The released labels are tumor-lesion segmentations and the disease-free-reference flag only.
+The dataset contains no radiology reports and no staging or treatment-response labels, and the lymphoma staging context that motivates the cohort is not a released label.
+
+\subsection*{Related dataset}\label{subsec:relatedusage}
+Users who require the paired anatomical segmentations of this cohort should consult the companion descriptor, which releases the co-acquired MRI of the same patients with multi-structure anatomical segmentations of the skeleton and major organs.
+The two releases are split by labeled task, lesions here and anatomy there, and share the same co-acquired MRI for the overlapping subjects (Section~\ref{sec:datarecords}).
+The companion descriptor will be added as a numbered data citation once it has an assigned Digital Object Identifier [TBD].

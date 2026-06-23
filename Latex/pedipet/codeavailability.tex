@@ -1,0 +1,14 @@
+%%==========================================================================%%
+%% codeavailability.tex -- "Code availability".                              %%
+%% Required even if no custom code is released. State the conversion,          %%
+%% de-identification, and format-conversion code, with software versions, or  %%
+%% that no custom code is released. Placed immediately before the references. %%
+%% American spelling.                                                         %%
+%%==========================================================================%%
+
+\section*{Code availability}\label{sec:code}
+
+The utilities used to convert the DICOM imaging to derived NIfTI volumes, to apply the standardized-uptake-value conversion to the PET, and to resample the PET and MRI onto a common grid are released with the dataset at [TBD: repository URL] under [TBD: license], with the software versions recorded there [TBD: versions of Python and the imaging libraries].
+Segmentation masks were converted to DICOM-SEG using dcmqi [TBD: version].
+De-identification of the DICOM headers and the pixel-level defacing were performed with [TBD: tool names and versions] (Section~\ref{sec:methods}).
+[TBD: if any of the above is not released as custom code, state that the step used the host repository's standard de-identification pipeline or a standard openly available tool, and name it with its version.]

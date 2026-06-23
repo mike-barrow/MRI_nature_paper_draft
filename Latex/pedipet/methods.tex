@@ -1,0 +1,98 @@
+%%==========================================================================%%
+%% methods.tex -- "Methods". Subsection structure mirrors the AutoPET         %%
+%% descriptor (Gatidis 2022), adapted to a pediatric whole-body FDG-PET/MRI   %%
+%% lymphoma lesion dataset. American spelling. [TBD] = our specifics, mostly  %%
+%% from the DICOM headers. No results or analyses anywhere in the descriptor.      %%
+%%==========================================================================%%
+
+\section*{Methods}\label{sec:methods}
+
+\subsection*{Ethics statement}\label{subsec:ethics}
+The collection and retrospective use of these data were approved by the Stanford University Institutional Review Board under protocol 44706 (``Pediatric PET/MR Image Registry''), with approval granted on [TBD: approval date], and all procedures were carried out in accordance with the Declaration of Helsinki and the Health Insurance Portability and Accountability Act (HIPAA).
+The registry operates under an approved waiver of authorization and a waiver of assent for minors under 45~CFR~46.404 [TBD: confirm the exact waiver wording and the public-release modification].
+The imaging was de-identified to a HIPAA standard before release.
+The DICOM headers were de-identified using an automated pipeline [TBD: tool and version], and the pixel data were processed to remove identifiable features, including defacing of the face and of the pelvic region on every spatially co-registered series, because the co-registration of PET and MRI can otherwise re-expose a region defaced on one modality alone [TBD: defacing tool and version]~\cite{Selfridge_2023}.
+The standard applied for release was a HIPAA Expert Determination [TBD: certifying party], under which the dataset was certified to carry no more than a very small risk of re-identification.
+The resulting access conditions are described in the Usage Notes and the Data Availability statement.
+
+\subsection*{Participants}\label{subsec:cohort}
+Subjects were retrospectively identified at Lucile Packard Children's Hospital at Stanford, a single center.
+The inclusion criterion was a clinically indicated whole-body FDG-PET/MRI examination performed for pediatric or young-adult lymphoma (Hodgkin or non-Hodgkin), in patients aged [TBD] years (median [TBD]).
+Examinations were acquired between [TBD: start] and [TBD: end].
+The sex distribution was [TBD: N female, N male].
+[TBD: formal exclusion criteria with counts, for example incomplete whole-body coverage, non-diagnostic image quality, or PET and MRI series that could not be spatially aligned.]
+[TBD: number of Hodgkin versus non-Hodgkin cases.]
+
+The released examinations comprise two labeled subsets, which may overlap at the patient level, so a patient may contribute to both and the subset counts need not sum to the cohort total.
+The first is a lesion-positive subset of examinations with manually drawn FDG-avid tumor-lesion segmentations, comprising approximately [TBD] examinations from [TBD] patients.
+The second is a disease-free reference subset of follow-up examinations, each demonstrating complete metabolic response with no FDG-avid malignant lesions, comprising approximately [TBD] examinations.
+The disease-free reference subset is the pathology-negative analog of the negative-control studies in the adult whole-body FDG-PET/CT lesion dataset~\cite{Gatidis_2022}.
+A subject-by-subject description of demographic and clinical characteristics is provided in the accompanying metadata (Section~\ref{sec:datarecords}), and patient characteristics are summarized in Table~\ref{tab:cohort}.
+
+%%-- Patient-characteristics table placeholder (cf. AutoPET Table 1) --------%%
+\begin{table}[h]
+\caption{Patient characteristics of the released cohort, by lymphoma class and labeled subset. All cells are [TBD] pending reconciliation of the release manifest.}\label{tab:cohort}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+ & \multicolumn{2}{c}{Lesion-positive subset} & \multicolumn{2}{c}{Disease-free reference subset} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Characteristic & Hodgkin & Non-Hodgkin & Hodgkin & Non-Hodgkin \\
+\midrule
+Patients ($n$)            & [TBD] & [TBD] & [TBD] & [TBD] \\
+Examinations ($n$)        & [TBD] & [TBD] & [TBD] & [TBD] \\
+Female / male             & [TBD] & [TBD] & [TBD] & [TBD] \\
+Age, years (mean $\pm$ SD) & [TBD] & [TBD] & [TBD] & [TBD] \\
+\botrule
+\end{tabular}
+\end{table}
+
+\subsection*{Image acquisition}\label{subsec:acquisition}
+Examinations were acquired as integrated whole-body FDG-PET/MRI on a [TBD: PET/MR scanner manufacturer and model] operating at a field strength of [TBD: field strength].
+
+For the PET component, [$^{18}$F]fluorodeoxyglucose was injected intravenously in all examinations, at a weight-based pediatric activity of [TBD: injected activity, following weight-based reference levels]~\cite{Lassmann_2007}.
+PET acquisition was initiated after an uptake period of [TBD: uptake time].
+PET images were reconstructed using [TBD: reconstruction algorithm and parameters, for example iterations, subsets, filter, matrix size, and voxel size].
+Attenuation correction was MR-based, derived from a dedicated MRI sequence rather than from CT [TBD: attenuation-correction method].
+The implications of MR-based attenuation correction for quantitative uptake measures are noted in the Usage Notes.
+
+For the MRI component, because protocols were determined by clinical indication, the number and type of sequences vary across subjects and include both non-contrast and contrast-enhanced acquisitions.
+Whole-body coverage was obtained using [TBD: acquisition strategy, for example multi-station composed sequences], and the acquired contrasts include [TBD: for example T1-weighted, T2-weighted, STIR, Dixon, and diffusion-weighted imaging].
+Acquisition parameters for the most frequently applied sequences are summarized in Table~\ref{tab:acq}, and the complete per-examination parameters are recorded in the DICOM headers.
+
+%%-- Acquisition-parameter table placeholder (cf. AutoPET acquisition) ------%%
+\begin{table}[h]
+\caption{Representative PET and MRI acquisition parameters for the most frequently applied protocol. All values are [TBD] pending extraction from the DICOM headers.}\label{tab:acq}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Parameter & PET & [MRI seq.\ 1] & [MRI seq.\ 2] \\
+\midrule
+Tracer / activity        & FDG, [TBD] & n/a & n/a \\
+Uptake time [min]        & [TBD] & n/a & n/a \\
+Reconstruction           & [TBD] & n/a & n/a \\
+Attenuation correction   & MR-based [TBD] & n/a & n/a \\
+TR [ms]                  & n/a & [TBD] & [TBD] \\
+TE [ms]                  & n/a & [TBD] & [TBD] \\
+Slice thickness [mm]     & [TBD] & [TBD] & [TBD] \\
+Voxel size [mm]          & [TBD] & [TBD] & [TBD] \\
+\botrule
+\end{tabular}
+\end{table}
+
+\subsection*{Data processing}\label{subsec:processing}
+The released imaging is provided in its native DICOM format, with the acquisition parameters retained in the DICOM headers.
+Conversion utilities are provided that read the DICOM imaging and produce derived volumes (NIfTI), apply the standardized-uptake-value (SUV) conversion to the PET using the activity, body weight, and timing fields recorded in the headers, and resample the PET and MRI series onto a common grid where required (Section~\ref{sec:code}).
+The manual lesion and disease-free-reference masks were converted from their annotation format (NIfTI/NRRD) to DICOM-SEG using dcmqi [TBD: version] for release.
+
+\subsection*{Annotation}\label{subsec:annotation}
+Tumor-lesion segmentations were drawn manually in 3D~Slicer [TBD: version].
+Candidate examinations were identified from the clinical record, and all FDG-avid lesions reported as malignant in the clinical PET/MRI report were segmented on the FDG-avid PET, in a slice-by-slice manner [TBD: confirm the segmentation reference series against the DICOM headers], a procedure that parallels the manual PET segmentation of the adult whole-body FDG-PET/CT lesion dataset~\cite{Gatidis_2022}.
+Annotation was performed by a team of trained readers [TBD: number and experience of annotators, and the annotation standard operating procedure].
+The disease-free reference examinations carry no lesion masks by definition, and they are recorded as complete-metabolic-response follow-up studies so that they can be selected as pathology-negative references.
+The released labels record, for each examination, the target structure and the label type (voxel-level segmentation).
+
+\subsection*{Data Properties}\label{subsec:properties}
+This subsection summarizes the lesion-burden distributions of the lesion-positive subset and is the only part of this descriptor that reports summary statistics.
+The Data Records carry file-level information only.
+For the lesion-positive subset, the metabolic tumor volume (MTV), mean and maximum SUV, and total lesion glycolysis (TLG) of the segmented lesions amounted to (mean~$\pm$~SD) [TBD], [TBD], and [TBD], respectively [TBD: report by lymphoma class where the subset sizes permit].
+SUV measurements were referenced to the liver and the mediastinal blood pool, the regions used for response assessment of FDG-avid lymphoma~\cite{Barrington_2017}.
+These distributions are shown in Figure~\ref{fig:cohort}.

@@ -1,0 +1,144 @@
+%%==========================================================================%%
+%% main.tex -- Data Descriptor for a pediatric whole-body MRI dataset with    %%
+%% multi-structure normal-anatomy segmentations, targeting Scientific Data.   %%
+%%                                                                            %%
+%% Built on the Springer Nature article template (sn-jnl.cls).                %%
+%% Scientific Data is a Nature Portfolio journal, so the Nature reference      %%
+%% style (sn-nature) is selected.                                             %%
+%%                                                                            %%
+%% Section structure follows the Scientific Data Data Descriptor format:       %%
+%%   Background & Summary -> Methods -> Data Records -> Technical Validation   %%
+%%   -> Usage Notes -> Data Availability -> Code Availability -> References,    %%
+%%   followed by Author Contributions -> Competing Interests -> Funding.        %%
+%%                                                                            %%
+%% NOTE ON SUBMISSION: Springer Nature requires the manuscript as a single    %%
+%% .tex file with the references embedded directly. This working draft uses   %%
+%% \input{} for convenience and keeps references in references.bib. Before     %%
+%% submission, inline the section files and paste the .bbl in place of the     %%
+%% \bibliography command.                                                      %%
+%%==========================================================================%%
+
+\documentclass[pdflatex,sn-nature]{sn-jnl}% Nature Portfolio reference style
+
+%%%% Standard Packages
+\usepackage{graphicx}%
+\usepackage{multirow}%
+\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{amsthm}%
+\usepackage{mathrsfs}%
+\usepackage[title]{appendix}%
+\usepackage{xcolor}%
+\usepackage{textcomp}%
+\usepackage{manyfoot}%
+\usepackage{booktabs}%
+\usepackage{algorithm}%
+\usepackage{algorithmicx}%
+\usepackage{algpseudocode}%
+\usepackage{listings}%
+
+\raggedbottom
+
+\begin{document}
+
+%%=============================================================%%
+%% Title.
+%% Constraint: 110 characters max including spaces, no colon, no
+%% parentheses, no brand names, no advertising words. The running
+%% short title is bracketed, the full title in braces.
+%% Working title below names the searchable terms (pediatric,
+%% whole-body, MRI, multi-structure, anatomy, segmentation).
+%% Exact wording [TBD] pending the final split decision.
+%%=============================================================%%
+
+\title[Pediatric Whole-Body MRI Anatomy Segmentation Dataset]{A pediatric whole-body MRI dataset with multi-structure normal-anatomy segmentations}
+
+%%=============================================================%%
+%% Author / affiliation block.
+%% AUTHORSHIP: all authors contributed equally, no designated first
+%% author under the current working decision. Author set and order
+%% are unsettled. Corresponding author and institutional email [TBD].
+%% Per-author affiliation strings [TBD].
+%%=============================================================%%
+
+\author*[1]{\fnm{[TBD]} \sur{[TBD]}}\email{}
+\equalcont{All authors contributed equally to this work.}
+
+\author[1]{\fnm{[TBD]} \sur{[TBD]}}\email{}
+\equalcont{All authors contributed equally to this work.}
+
+\affil*[1]{\orgdiv{[TBD: Department of Radiology]}, \orgname{[TBD: Stanford University School of Medicine]}, \orgaddress{\city{Stanford}, \state{CA}, \country{USA}}}
+
+%%================================%%
+%% Abstract (kept in abstract.tex for the working draft).           %%
+%%================================%%
+
+\input{abstract}
+
+\keywords{pediatric MRI, whole-body imaging, anatomical segmentation, skeleton segmentation, organ segmentation, lymphoma, medical imaging dataset}
+
+\maketitle
+
+%%==========================================================================%%
+%% Section bodies are kept in separate files for the working draft.          %%
+%% Before submission, inline them into this single .tex file (SN requirement).%%
+%%==========================================================================%%
+
+\input{background}
+
+\input{methods}
+
+\input{datarecords}
+
+\input{validation}
+
+\input{usagenotes}
+
+%%==========================================================================%%
+%% Data Availability is a required statement, separate from Data Records.     %%
+%% It repeats the accession, repository, and DOI. All [TBD] until the host    %%
+%% and DOI are locked.                                                        %%
+%%==========================================================================%%
+
+\section*{Data Availability}\label{sec:dataavail}
+The dataset is deposited in [TBD: repository] under accession [TBD] and Digital Object Identifier [TBD: https://doi.org/XXXX].
+The release contains the whole-body MRI examinations and the multi-structure normal-anatomy segmentation labels described in the Data Records.
+The applicable license and access conditions are [TBD: pending the open-versus-controlled-access decision, for example open CC BY 4.0 or a controlled-access deposit governed by a Data Use Agreement].
+
+%%==========================================================================%%
+%% Code Availability is the last section before the references.              %%
+%%==========================================================================%%
+
+\input{codeavailability}
+
+\bibliography{references}% bib database for this manuscript
+
+%%==========================================================================%%
+%% Back matter follows the references in the Scientific Data order:           %%
+%% Author Contributions -> Competing Interests -> Funding.                     %%
+%%==========================================================================%%
+\backmatter
+%%==========================================================================%%
+
+%% Acknowledgements: optional, non-author contributors only. Omitted under
+%% the current working decision (no non-author contributor to acknowledge).
+%% Revisit if a coordinator or de-identification provider contributed.
+
+\section*{Author contributions}\label{sec:contrib}
+[TBD: CRediT author-contribution statement, to be finalized once the author block is settled.]
+The intended structure follows the real division of work.
+[TBD] performed the original correction-based anatomy annotation.
+[TBD] performed additional annotation, quality control, and the validation labeling.
+[TBD] led model development and the computational analysis.
+[TBD] supervised the project and provided clinical oversight.
+[TBD] provided methodological and venue guidance.
+All authors reviewed and approved the manuscript.
+
+\section*{Competing interests}\label{sec:coi}
+[TBD: per-author competing-interests statement, to be confirmed with all authors. Verify whether any institutional licensing agreement or industry disclosure applies to any subject included in the released data, and declare it here or state that the authors declare no competing interests.]
+
+\section*{Funding}\label{sec:funding}
+[TBD: funding statement, to be finalized with all funders confirmed.]
+% Candidate funding strings: NCI R01 CA269231, plus a travel grant for one
+% author. Confirm the full set and which apply to the released data.
+
+\end{document}

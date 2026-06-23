@@ -1,0 +1,54 @@
+%%==========================================================================%%
+%% background.tex -- "Background & Summary".                                  %%
+%% Motivation + contents + reuse value, citing the prior publication that     %%
+%% used the data. No subjective novelty, impact, or utility claims.           %%
+%% American spelling. Cohort numbers are [TBD] or approximate.                %%
+%%==========================================================================%%
+
+\section*{Background \& Summary}\label{sec:background}
+
+Whole-body magnetic resonance imaging (MRI) provides soft-tissue-rich anatomical coverage of the body without the ionizing radiation of computed tomography (CT).
+In pediatric oncology, and in lymphoma in particular, this property is well suited to diagnosis, staging, and treatment monitoring, where limiting cumulative radiation across repeated examinations is a primary concern~\cite{GalloBernal_2025,Kurch_2021}.
+Children are more sensitive to ionizing radiation than adults, which is one reason MRI is favored for the anatomical component of pediatric whole-body imaging~\cite{Brenner_2007}.
+Whole-body MRI is increasingly used alongside or in place of CT-based protocols for these pediatric applications~\cite{Masselli_2025}.
+
+Image-based artificial intelligence increasingly supports these clinical tasks, and a common prerequisite is the reliable identification of anatomy across the whole body, against which functional or pathological findings can be localized and scored.
+Progress in automated segmentation has been driven by large public imaging resources, but these remain overwhelmingly adult and dominated by CT~\cite{Wasserthal_2023}.
+The adult MRI counterpart, an open sequence-independent multi-structure segmentation tool, has recently become available for adult anatomy~\cite{Wasserthal_2025}.
+Adult-trained models do not transfer cleanly to children.
+Pediatric anatomy changes substantially across development, so models calibrated on adults behave unpredictably on pediatric inputs~\cite{Chatterjee_2025}, and adult-trained segmentation models degrade across pediatric tasks, with the largest losses in the youngest patients~\cite{Laborie_2026}.
+
+Pediatric segmentation resources are beginning to emerge, but each leaves part of the whole-body MRI problem uncovered.
+Pediatric abdominal organ segmentation has been demonstrated on CT through transfer learning~\cite{Somasundaram_2024}, and a recent pediatric effort segments thoracic and abdominal viscera on CT and MRI~\cite{Eicke_2026}, but neither covers the skeleton in a whole-body MRI setting.
+Adult full-body and torso MRI multi-structure segmentation, including skeletal structures, has been released for large adult biobanks~\cite{Graf_2026}, and whole-body semantic anatomy segmentation has been demonstrated on adult PET/CT~\cite{Sundar_2022}, but these are adult resources.
+Public pediatric whole-body MRI datasets with manual segmentations covering the major skeletal structures together with the principal organs remain scarce.
+
+We present a pediatric whole-body MRI dataset assembled from a single-center lymphoma cohort, with a subset of examinations carrying manual multi-structure normal-anatomy segmentations.
+The collection comprises approximately [TBD] whole-body MRI examinations.
+A subset of approximately [TBD] examinations carries segmentation labels covering major skeletal structures and the principal abdominal and thoracic organs, contoured in 3D Slicer.
+An overview of the cohort and the imaging is shown in Figure~\ref{fig:cohort}.
+The same source patients and co-acquired imaging also underlie a companion descriptor that releases the positron emission tomography (PET) examinations with tumor-lesion segmentations.
+The two descriptors are split by labeled task, normal-anatomy segmentation here and lesion segmentation in the companion, rather than by raw modality, and they share a portion of the underlying cohort [TBD: cross-reference the companion descriptor and its data citation once its Digital Object Identifier is minted].
+
+The segmentation subset of this dataset was used to develop and report a pediatric whole-body MRI anatomy-segmentation model in a separate study~\cite{[TBD: companion findings publication, cite once available]}.
+We anticipate that the dataset will support the development of pediatric whole-body anatomical segmentation methods, adult-to-pediatric transfer learning, and the use of normal-anatomy reference labels for downstream lesion-detection and staging research on the same imaging.
+By providing pediatric whole-body MRI with consistent organization and labeling, it complements existing adult and CT-dominated resources.
+
+%%--------------------------------------------------------------------------%%
+%% Figure 1 -- cohort and example overview. Placeholder, real image pending. %%
+%% Distribution-panel numbers are [TBD].                                     %%
+%%--------------------------------------------------------------------------%%
+\begin{figure}[t]
+\centering
+\fbox{\parbox[c][6cm][c]{0.85\textwidth}{\centering\itshape
+[Figure 1 placeholder: (a) representative pediatric coronal whole-body MRI
+with the multi-structure anatomy-segmentation overlay (skeleton and organs).
+(b) Composition of the dataset across the full MRI cohort and the
+anatomy-segmentation subset. (c) Age and sex distribution of the
+anatomy-segmentation subset. Real image pending.]}}
+\caption{\textbf{Overview of the pediatric whole-body MRI cohort and the anatomy-segmentation subset.}
+(a) A representative whole-body MRI examination shown in the coronal plane with the multi-structure normal-anatomy segmentation overlay covering skeletal structures and major organs.
+(b) Composition of the dataset across the full MRI cohort and the anatomy-segmentation subset (counts [TBD]).
+(c) Distribution of patient age and sex for the anatomy-segmentation subset (counts [TBD]).}
+\label{fig:cohort}
+\end{figure}

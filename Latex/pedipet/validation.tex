@@ -1,0 +1,60 @@
+%%==========================================================================%%
+%% validation.tex -- "Technical Validation".                                 %%
+%% Establishes data quality and fitness for purpose, NOT analytical          %%
+%% findings or a benchmark. Mirrors AutoPET's metric set (Dice, false-        %%
+%% positive volume, false-negative volume). The adult Dice of 0.73 is cited  %%
+%% as the comparator yardstick, not as a result of this dataset. All metric   %%
+%% values are [TBD] pending the corrected lesion export and the trained       %%
+%% baseline. Report confidence intervals, never bare means. American         %%
+%% spelling.                                                                  %%
+%%==========================================================================%%
+
+\section*{Technical Validation}\label{sec:validation}
+
+The validation reported here establishes that the released data are technically sound and fit for the intended lesion-detection and segmentation tasks.
+It does not report analytical findings, and the baseline below is provided as evidence of data quality rather than as a benchmark result.
+
+\subsection*{Metadata and data integrity}\label{subsec:integrity}
+We verified the integrity and internal consistency of the release through schema validation of the metadata table, checks of referential consistency between the metadata, the imaging, and the label series, and per-file checksums (SHA-256).
+We confirmed that every lesion-positive examination carries a DICOM-SEG label series aligned to its FDG-avid PET, and that every disease-free reference examination is flagged as complete-metabolic-response and carries no lesion label.
+The data additionally pass the curation and validation performed by the host repository as part of submission.
+
+\subsection*{Inter-reader agreement}\label{subsec:agreement}
+For a subset of examinations segmented independently by a second reader, we quantified inter-reader agreement of the lesion labels using the Dice similarity coefficient~\cite{Dice_1945}, reported with bootstrapped 95\% confidence intervals.
+Across [TBD] examinations, the mean Dice between readers was [TBD] (95\% CI [TBD] to [TBD]) [TBD: report the distribution and, where appropriate, agreement on lesion count and on total lesion volume].
+This analysis characterizes the reliability of the manual lesion labels rather than the performance of any model.
+
+\subsection*{Lesion-segmentation baseline}\label{subsec:baseline}
+To demonstrate that the data support automated lesion segmentation, we trained a baseline model using the self-configuring nnU-Net framework~\cite{Isensee_2021}, with the SUV-converted PET and the paired MRI as inputs and the manual lesion masks as targets, under [TBD: cross-validation scheme, for example five-fold subject-level cross-validation].
+Automated whole-body FDG-PET lesion and organ segmentation with this class of model is established for adult PET/CT~\cite{Gatidis_2024,Sundar_2022}, and the present baseline assesses whether the released pediatric PET/MRI data are sufficient to train such a model.
+We report the Dice similarity coefficient between automated and manual lesion segmentation on the lesion-positive subset, together with false-positive and false-negative lesion volumes, each with bootstrapped 95\% confidence intervals, and the correlation between automated and manual metabolic tumor volume.
+On the lesion-positive subset, the mean Dice was [TBD] (95\% CI [TBD] to [TBD]), the mean false-positive and false-negative volumes were [TBD] mL (95\% CI [TBD] to [TBD]) and [TBD] mL (95\% CI [TBD] to [TBD]), and the metabolic-tumor-volume correlation was [TBD].
+For reference, an nnU-Net baseline trained on the adult whole-body FDG-PET/CT lesion dataset reached a mean Dice of 0.73~$\pm$~0.23 on its positive studies~\cite{Gatidis_2022}, and this adult value is provided only as a comparator and is not a result of the present dataset.
+The training behavior and the metric distributions of the baseline are shown in Figure~\ref{fig:baseline}, and qualitative examples in Figure~\ref{fig:examples}.
+
+%%-- Baseline metrics figure placeholder (cf. AutoPET Figs. 3-4) ------------%%
+\begin{figure}[t]
+\centering
+\fbox{\parbox[c][5cm][c]{0.85\textwidth}{\centering\itshape
+[Figure 3 placeholder: training and evaluation of the lesion-segmentation
+baseline, showing the loss curve, the per-examination Dice distribution, and
+the false-positive and false-negative lesion-volume distributions with their
+confidence intervals. Real image pending, sans-serif, white background, error
+bars and statistical treatment stated in the legend at submission.]}}
+\caption{\textbf{Lesion-segmentation baseline.}
+Training behavior and evaluation of the nnU-Net lesion-segmentation baseline on the lesion-positive subset, reported with 95\% confidence intervals ([TBD] values).}
+\label{fig:baseline}
+\end{figure}
+
+%%-- Qualitative-examples figure placeholder (cf. AutoPET Fig. 5) -----------%%
+\begin{figure}[t]
+\centering
+\fbox{\parbox[c][5cm][c]{0.85\textwidth}{\centering\itshape
+[Figure 4 placeholder: qualitative examples of the manual and automated
+lesion segmentations on representative pediatric FDG-PET/MRI examinations,
+including a correctly segmented case and a false-positive case. Real image
+pending, sans-serif, white background at submission.]}}
+\caption{\textbf{Qualitative lesion-segmentation examples.}
+Representative examinations showing the manual lesion segmentation alongside the automated baseline, including a correctly segmented case and a false-positive case.}
+\label{fig:examples}
+\end{figure}
