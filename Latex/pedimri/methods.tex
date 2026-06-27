@@ -8,40 +8,44 @@
 \section*{Methods}\label{sec:methods}
 
 \subsection*{Ethics statement}\label{subsec:ethics}
-The imaging was collected under an institutional review board (IRB) protocol for a pediatric PET/MR image registry, approved by the Stanford University Institutional Review Board under protocol 44706, approved on [TBD].
+The imaging was collected under an institutional review board (IRB) protocol for a pediatric PET/MR image registry, approved by the Stanford University Institutional Review Board under protocol 44706 on 3 March 2026 as minimal-risk expedited research.
+For the retrospective use of de-identified imaging, the IRB granted a Waiver of Authorization, an Alteration of Authorization, and a Waiver of Assent, and approved the involvement of children under the minimal-risk provision at 45 CFR 46.404.
 All procedures were carried out in accordance with the Declaration of Helsinki and the Health Insurance Portability and Accountability Act (HIPAA).
-The study operates under a waiver of informed consent and a waiver of assent for the retrospective use of de-identified imaging, granted by the IRB under the applicable minimal-risk provisions for research involving children [TBD: confirm the exact regulatory citation and waiver instruments].
-Public release of the de-identified data is authorized under a modification of the same protocol [TBD: confirm the modification mechanism].
-The released imaging is multi-protocol in origin, and the per-case protocol provenance is recorded in the accompanying metadata [TBD: confirm the provenance map].
+A modification of the same protocol authorizes the public release of the de-identified data.
 
-De-identification follows a HIPAA Expert Determination standard rather than Safe Harbor alone, because whole-body imaging of minors can carry residual identifiability that Safe Harbor does not fully address [TBD: confirm the Expert Determination provider and certification].
-Protected health information is removed from the DICOM headers, and a per-subject date offset is applied so that the relative timing between a subject's examinations is preserved.
-Because whole-body MRI can permit surface reconstruction, identifiable regions are obscured.
-The face is defaced using a published volumetric defacing workflow~\cite{Selfridge_2023}, and the pelvic region is similarly obscured [TBD: pelvic defacing tool and parameters].
-The dataset is shared in a manner consistent with the FAIR principles for data reuse~\cite{Wilkinson_2016}.
+All imaging was de-identified at the originating institution before transfer.
+Header de-identification was performed on site in coordination with The Cancer Imaging Archive, using the RSNA Clinical Trial Processor with the de-identification configuration the archive supplies and following the DICOM PS3.15 Basic Application Confidentiality Profile, so that the original patient identifiers never left the institution.
+A per-subject date offset preserves the relative timing between a subject's examinations, and the archive's configuration retains the acquisition metadata needed for reuse.
+Because whole-body MRI of minors can permit reconstruction of the face and the pelvic surface, the research team additionally defaced and smoothed the facial and pelvic regions across the co-registered series with a validated defacing method [TBD: Felix], a step that is not part of the standard DICOM header de-identification and that the archive does not perform.
+After transfer, The Cancer Imaging Archive curation team performed a secondary de-identification review, including automated tag analysis and visual inspection of every image for residual protected health information.
+De-identification met the HIPAA Privacy Rule through an Expert Determination rather than the Safe Harbor method alone, given the small sample size and the rare pediatric diagnoses.
+The Expert Determination was obtained under the oversight of the institutional privacy office and certified by [TBD: Heike/Privacy Office].
+The data are released under controlled access governed by a data use agreement that prohibits re-identification, and the dataset is shared in a manner consistent with the FAIR principles for data reuse~\cite{Wilkinson_2016}.
 
 \subsection*{Participants}\label{subsec:cohort}
 Subjects were retrospectively identified at Lucile Packard Children's Hospital at Stanford, a single center.
 The cohort consists of pediatric and young-adult lymphoma patients (Hodgkin and non-Hodgkin) who underwent whole-body MRI.
-The full MRI cohort comprises approximately [TBD] examinations from [TBD] patients, acquired between [TBD: start] and [TBD: end].
-The anatomy-segmentation subset, the focus of the released labels, comprises approximately [TBD] examinations from [TBD] patients [TBD: report the exact in-cohort scan and patient counts once locked].
-Patient sex was [TBD: N female and N male] in the anatomy-segmentation subset.
-Patient age in the anatomy-segmentation subset ranged from [TBD] to [TBD] years, with a median of [TBD] [TBD: report exact age summary for the released subset].
+The released dataset comprises several hundred whole-body MRI examinations [TBD: exact count], of which approximately 40 carry manual normal-anatomy segmentations.
+Of the segmentation subset, 37 examinations from 36 patients have been labeled to date.
+Among the 36 labeled-to-date patients, 16 were female and 20 were male.
+Age at scan averaged 9.4 years (standard deviation 4.0), with a median of 11 years and a range of 1 to 17 years.
 
 The same source patients and co-acquired imaging also appear in a companion descriptor that releases the PET examinations with tumor-lesion segmentations.
-The overlap between the two releases is [TBD: report the patient-level overlap between the anatomy and lesion subsets].
+At the patient level, the two releases share approximately 32 patients.
 The split between the two descriptors is by labeled task, with normal-anatomy segmentation in the present dataset and lesion segmentation in the companion, and not by raw modality.
 
-Inclusion required diagnostic-quality whole-body MRI coverage suitable for manual anatomy segmentation.
-Examinations were excluded for [TBD: reasons with counts, for example non-diagnostic image quality, severe motion or misregistration, or incomplete coverage].
+Inclusion required a retrospectively ascertained pediatric or young-adult patient with lymphoma (Hodgkin or non-Hodgkin) imaged at Lucile Packard Children's Hospital, together with a whole-body MRI of diagnostic quality suitable for manual anatomy segmentation.
+Whole examinations were excluded for non-diagnostic image quality, post-surgical anatomy no longer representative of typical morphology, severe motion or misregistration across the whole-body stations, or excessive image noise [TBD: exact counts of excluded examinations].
+On a retained examination, an individual structure was occasionally left unlabeled when local non-diagnostic quality or severe artifact, tumor mass obscuring the structure, a field-of-view cutoff, non-visualization, or anatomical ambiguity prevented reliable contouring.
+In these cases the examination was retained and only the affected structure was omitted.
 A subject-by-subject description of the demographic and clinical characteristics is provided in the accompanying metadata (Section~\ref{sec:datarecords}).
 
 \subsection*{Image acquisition}\label{subsec:acquisition}
-Whole-body MRI examinations were acquired on [TBD: scanner manufacturer and model] operating at [TBD: field strength].
+Whole-body MRI examinations were acquired on [TBD: Michael] operating at [TBD: Michael] field strength, between [TBD: Michael] and [TBD: Michael].
 Because imaging protocols were determined by clinical indication, the number and type of sequences vary across subjects.
-Acquired contrasts include [TBD: for example T1-weighted, T2-weighted, STIR, Dixon, and diffusion-weighted imaging], and whole-body coverage was obtained using [TBD: acquisition strategy, for example multi-station composed acquisitions].
+The acquired contrasts include [TBD: Michael], and whole-body coverage was obtained using [TBD: Michael].
 Acquisition parameters for the most frequently applied protocol are summarized in Table~\ref{tab:acq}, and the per-series parameters are retained in the DICOM headers and recorded in the accompanying metadata (Section~\ref{sec:datarecords}).
-[TBD: note any MRI sequences deliberately excluded from the release and why.]
+[TBD: Michael: note any MRI sequences deliberately excluded from the release and why.]
 
 %%-- Acquisition-parameter table placeholder ------------------------------%%
 \begin{table}[h]
@@ -60,35 +64,41 @@ Orientation           & [TBD] & [TBD] & [TBD] \\
 \end{table}
 
 \subsection*{Data processing}\label{subsec:curation}
-The released imaging is provided in [TBD: native DICOM, or NIfTI, depending on the host repository].
-The source imaging was de-identified as described in the Ethics statement, including header scrubbing, face defacing~\cite{Selfridge_2023}, and pelvic obscuring [TBD].
-Manual segmentation masks were exported from the annotation software as label volumes spatially aligned to the corresponding imaging, in [TBD: NIfTI or NRRD format], and converted to the released label format [TBD: DICOM-SEG via dcmqi for a DICOM host, or retained as NIfTI/NRRD for a file-based host].
+The released imaging is provided as DICOM and hosted on The Cancer Imaging Archive (TCIA), organized in the standard DICOM hierarchy.
+The source imaging was de-identified on site before transfer, as described in the Ethics statement.
+Manual segmentation masks were contoured in 3D Slicer and held as working label volumes during annotation.
+For release, these label volumes were converted to DICOM-SEG objects that reference the corresponding source image series, using the dcmqi toolkit~\cite{Herz_2017}, so that the masks are distributed in the same standard DICOM hierarchy as the imaging.
 An overview of data collection, de-identification, annotation, and processing is presented in Figure~\ref{fig:workflow}.
 
 \subsection*{Annotation}\label{subsec:annotation}
-Manual segmentation was performed in 3D Slicer [TBD: add the 3D Slicer tool citation if a tool reference is required by the section].
-Annotation was carried out by a team of readers of varying experience, comprising two postdoctoral physicians in pediatric radiology research and two medical or doctoral students.
+Manual segmentation was performed in 3D Slicer.
+Annotation was carried out by a team of readers comprising two postdoctoral physicians in pediatric radiology research and two medical or doctoral students.
 The released labels cover 13 anatomical structures.
-Seven are bilateral and stored as separate left and right instances, namely the femur, tibia, fibula, humerus, hip, lung, and kidney.
+Seven are bilateral and stored as separate left and right instances, namely the femur, tibia, fibula, humerus, pelvis, lung, and kidney.
 The remaining six are single structures, namely the spine, sacrum, liver, spleen, heart, and urinary bladder.
 The seven bilateral structures contribute two labels each and the six single structures one label each, for 20 labels in total.
-The radius, ulna, pancreas, great vessels, and thymus were outside the released label scope.
-The full mapping between label indices and structures is provided as a data dictionary with the release (Section~\ref{sec:datarecords}) [TBD: confirm indices against the deposited files].
+The radius, ulna, pancreas, great vessels (the aorta and inferior vena cava), and thymus were outside the released label scope.
+Each released DICOM-SEG segment carries a coded anatomical label drawn from a controlled anatomy vocabulary, so that every structure is identified by standardized semantics rather than a bare integer index.
+The full mapping between label indices and structures is provided as a data dictionary that ships with the release (Section~\ref{sec:datarecords}).
+The exact integer scheme for the 20-label left and right split is [TBD: Felix].
 
 Two annotation protocols were used, and the released metadata records which protocol applies to each labeled examination.
 For the training portion of the subset, labels were produced by correction, starting from automated predictions of an adult-trained whole-body MRI segmentation tool~\cite{Wasserthal_2025} and manually correcting them structure by structure.
 For the validation portion of the subset, labels were produced from scratch, contoured independently without reference to any automated prediction, so that the validation labels are not anchored to the adult-trained model.
-[TBD: confirm the provenance of the limb-bone labels, specifically whether the femur, tibia, fibula, and humerus labels were corrected from the adult-trained tool or contoured by hand, because the source tool's appendicular-bone model carries a redistribution restriction that would propagate to corrected labels.]
+[TBD: Felix: confirm the provenance of the limb-bone labels, specifically whether the femur, tibia, fibula, and humerus labels were corrected from the adult-trained tool or contoured by hand, because the source tool's appendicular-bone model carries a redistribution restriction that would propagate to corrected labels.]
 
 %%-- Workflow figure placeholder -----------------------------------------%%
 \begin{figure}[t]
 \centering
 \fbox{\parbox[c][4.5cm][c]{0.85\textwidth}{\centering\itshape
 [Figure 2 placeholder: data acquisition and processing workflow, from
-whole-body MRI through de-identification (header scrubbing, face and pelvic
-defacing), manual contouring in 3D Slicer, label-format conversion, and
+whole-body MRI through manual contouring in 3D Slicer, conversion of
+segmentation masks to DICOM-SEG, de-identification on site before transfer
+(DICOM header scrubbing in coordination with the archive using its tools and
+team-performed defacing of the face and pelvis) followed by a secondary
+curation-team review, and
 quality assessment to the released labels. Real image pending.]}}
 \caption{\textbf{Overview of the data acquisition, de-identification, and annotation workflow.}
-Whole-body MRI examinations are de-identified by header scrubbing and defacing of identifiable regions, manually contoured in 3D Slicer, converted to the released label format, and screened for quality before release. [TBD: finalize panel content.]}
+Whole-body MRI examinations are manually contoured in 3D Slicer, the masks are converted to DICOM-SEG objects, and the imaging and masks are de-identified on site before transfer, with header scrubbing performed in coordination with the archive using its de-identification tools and defacing of the face and pelvis performed by the team, followed by the archive's secondary curation review. [TBD: finalize panel content.]}
 \label{fig:workflow}
 \end{figure}

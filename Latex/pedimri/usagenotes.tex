@@ -1,25 +1,26 @@
 %%==========================================================================%%
 %% usagenotes.tex -- "Usage Notes".                                           %%
 %% Technical reuse and access notes only, not a conclusions section, no        %%
-%% selling points. DICOM and DICOM-SEG tooling, label-index map usage,         %%
-%% suggested splits, and limitations. American spelling.                       %%
+%% selling points. DICOM imaging and DICOM-SEG label tooling, access terms,     %%
+%% label-index map usage, suggested splits, and limitations. American spelling. %%
 %%==========================================================================%%
 
 \section*{Usage Notes}\label{sec:usage}
 
-\subsection*{Accessing the imaging and labels}\label{subsec:access}
-On a DICOM host, the imaging and the DICOM-SEG label objects can be read with standard tools such as pydicom, dcm2niix, dcmqi, 3D Slicer, and MITK.
-On a file-based host, the NIfTI imaging and the NIfTI or NRRD label volumes can be read with standard medical-imaging libraries such as nibabel and SimpleITK.
-The per-examination metadata table (CSV) can be loaded with any standard data-analysis tooling.
+\subsection*{Reading the imaging and labels}\label{subsec:reading}
+The imaging is distributed as DICOM and the segmentation labels as DICOM-SEG.
+Both can be read with standard tooling, including 3D Slicer, MITK, dcmqi, and pydicom, and converted to other volumetric formats as needed.
+Because each DICOM-SEG object references its source image series, a reader can load a segmentation together with the imaging it was derived from without an external mapping file.
+The per-examination metadata table (CSV) can be loaded with any standard data-analysis tooling and filtered to select examinations by age, sex, acquired sequence, lymphoma subtype, label availability, or annotation protocol.
+Users who wish to keep the correction-based and the from-scratch labels separate can filter on the annotation-protocol field.
+
+\subsection*{Access}\label{subsec:access}
+The dataset is shared under controlled access governed by a data use agreement whose terms are limited to the protection of participant data.
 
 \subsection*{Reading the label-index map}\label{subsec:labelmap}
 The label-index map (Section~\ref{sec:datarecords}) defines the integer index for each structure and its laterality.
-Bilateral structures are stored as separate left and right instances, so the femur, tibia, fibula, humerus, hip, lung, and kidney each occupy two indices, while the spine, sacrum, liver, spleen, heart, and urinary bladder each occupy one.
-Users combining structures into coarser groups, for example a single skeleton mask, should merge the relevant indices using the data dictionary rather than assuming a fixed ordering.
-
-\subsection*{Selecting a cohort}\label{subsec:query}
-The metadata table can be filtered with standard tools to select examinations by age, sex, acquired sequence, lymphoma subtype, label availability, or annotation protocol.
-Users who wish to keep the correction-based and the from-scratch labels separate can filter on the annotation-protocol field.
+Bilateral structures are stored as separate left and right instances, so the femur, tibia, fibula, humerus, pelvis, lung, and kidney each occupy two indices, while the spine, sacrum, liver, spleen, heart, and urinary bladder each occupy one.
+Users combining structures into coarser groups, for example a single skeleton label, should merge the relevant indices using the data dictionary rather than assuming a fixed ordering.
 
 \subsection*{Suggested splits}\label{subsec:splits}
 We recommend subject-level data splits to avoid leakage across training, validation, and test partitions, because a single subject can contribute more than one examination.
@@ -27,10 +28,11 @@ Users who wish to reproduce the development setting can follow the released trai
 
 \subsection*{Limitations}\label{subsec:limits}
 Several limitations bear on reuse.
-The cohort originates from a single center (Lucile Packard Children's Hospital at Stanford), so users should expect a single-institution distribution of scanners and protocols.
+The cohort originates from a single center (Lucile Packard Children's Hospital at Stanford), so users should expect a single-institution distribution of scanners and protocols, and the validation reported with this release is internal to that center.
 The clinical MRI protocols are heterogeneous, with the acquired sequences varying across subjects according to clinical indication.
 The cohort is lymphoma-focused, which limits the diversity of clinical presentations, and the study design is retrospective.
-The released labels are normal-anatomy segmentations only, without lesion labels, staging labels, or radiology reports.
-The lesion labels for the same patients are released in a companion descriptor [TBD: cross-reference once its Digital Object Identifier is minted].
-The age distribution of the validation portion of the segmentation subset does not include the youngest patients, so users should be cautious when applying models to children under [TBD] years, and the distribution of disease stage differs between the training and validation portions [TBD: confirm the age and stage distributions once the subset is locked].
+This release contains the MRI imaging and its normal-anatomy segmentation labels, without lesion labels, staging labels, or radiology reports.
+The PET imaging and the lesion labels for the same patients are released in a companion descriptor [TBD: cross-reference once its Digital Object Identifier is minted].
+The validation portion of the segmentation subset does not include any patient under 2 years of age, so users should be cautious when applying models to the youngest children.
+Disease stage is unevenly distributed between the training and validation portions, with Stage III over-represented in the validation portion.
 The dataset is shared in a manner consistent with the FAIR principles for data reuse~\cite{Wilkinson_2016}.

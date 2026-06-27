@@ -1,53 +1,57 @@
 %%==========================================================================%%
 %% datarecords.tex -- "Data Records".                                         %%
-%% The repository, files, formats, folder structure, and definitions of any   %%
-%% non-obvious fields. NO summary statistics here. Host is [TBD], so both      %%
-%% the DICOM and the file-based layouts are described.                        %%
+%% The repository, files, formats, directory structure, and definitions of    %%
+%% any non-obvious fields. NO summary statistics here. Host is TCIA: DICOM     %%
+%% imaging in the standard DICOM hierarchy, DICOM-SEG segmentation objects.    %%
 %% American spelling.                                                         %%
 %%==========================================================================%%
 
 \section*{Data Records}\label{sec:datarecords}
 
-The dataset is deposited in [TBD: repository] under accession [TBD] and Digital Object Identifier [TBD: https://doi.org/XXXX].
+The dataset is deposited in The Cancer Imaging Archive (TCIA) under accession [TBD] with a Digital Object Identifier minted by TCIA [TBD: https://doi.org/XXXX].
 The imaging, the segmentation labels, and the accompanying metadata are organized as described below.
-The host repository determines the released formats, and both candidate layouts are described because the host is not yet fixed.
 
 \subsection*{File organization}\label{subsec:layout}
-On a DICOM host, the imaging follows the standard DICOM hierarchy.
-Each subject contains one or more imaging studies, and each study contains the MRI series acquired in that session.
+The imaging follows the standard DICOM hierarchy of collection, patient, study, and series.
+Each patient contains one or more imaging studies, and each study contains the MRI series acquired in that session.
 Studies and series are identified by their DICOM unique identifiers, which are remapped during de-identification, and a per-subject date offset preserves the relative timing between a subject's examinations.
-Segmentation labels are stored as DICOM-SEG objects that reference the corresponding image series.
 
-On a file-based host, the imaging is provided as NIfTI volumes and the segmentation labels as NIfTI or NRRD label volumes, organized by subject in a directory hierarchy that mirrors the DICOM grouping.
-The label volumes are spatially aligned to the corresponding imaging.
-A representative directory layout for the file-based release is shown below [TBD: finalize to match the chosen host].
+The segmentation labels are released as DICOM-SEG objects.
+Each DICOM-SEG object references the source MRI image series from which it was derived and is stored as a series within the same study.
+The per-examination metadata and the label-index map are provided as plain-text CSV files.
+A representative layout is shown below.
 
 \begin{verbatim}
-dataset_root/
-  sub-[ID]/
-    ses-[ID]/
-      anat/
-        sub-[ID]_ses-[ID]_[sequence].nii.gz   # whole-body MRI series
-      seg/
-        sub-[ID]_ses-[ID]_anatomy.nii.gz       # multi-structure label volume
+collection/
+  [PatientID]/
+    [StudyUID]/
+      [SeriesUID]/
+        *.dcm        # whole-body MRI image series (DICOM)
+      [SegSeriesUID]/
+        *.dcm        # DICOM-SEG object, one coded segment per
+                     #   structure, referencing the MRI image series
   metadata/
-    examinations.csv                            # per-examination metadata
-    label_index.csv                             # label-index map (data dictionary)
-    data_dictionary.csv                         # column definitions
+    label_index.csv      # label-index map (data dictionary)
+    data_dictionary.csv  # column and field definitions
+    examinations.csv     # per-examination indexing metadata
 \end{verbatim}
 
 \subsection*{Imaging data}\label{subsec:imaging}
-The MRI image data are provided in [TBD: DICOM or NIfTI], with the acquisition parameters retained in the DICOM headers and mirrored in the per-examination metadata.
+The MRI image data are provided as DICOM, organized in the standard DICOM hierarchy described above.
+The acquisition parameters are retained in the DICOM headers and mirrored in the per-examination metadata.
 
 \subsection*{Segmentation labels and label-index map}\label{subsec:labels}
 The released segmentation labels cover 13 anatomical structures.
-Seven structures are bilateral and stored as separate left and right instances, while six are single structures, giving 20 labels in total.
-The labels are organized in the deposited directory tree as [TBD: folder grouping to match the deposited directory tree].
-The mapping between label index, structure, and laterality is the central data dictionary for the dataset and is provided as a machine-readable file with the release.
+Seven structures are bilateral and released as separate left and right segments, and six are single structures, giving 20 labels in total.
+Within each DICOM-SEG object, every structure is stored as a distinct segment whose anatomy is encoded with a controlled terminology, so the anatomical meaning of a segment travels with the object rather than relying on an external integer key.
+The spine is provided as a single fused segment of the vertebral body and intervertebral disc, a continuous cylinder running from the cervical spine to the sacrum, with the posterior elements, the spinal canal, and the spinal cord excluded.
+The sacrum is a separate segment.
+The mapping between label index, structure, laterality, and coded anatomical term is the data dictionary for the dataset and is provided as a machine-readable file with the release.
+The exact integer numbering of the 20 left and right labels is given in this data dictionary [TBD: Felix].
 Table~\ref{tab:labels} summarizes the structures and their organization.
 
 \begin{table}[h]
-\caption{Structures covered by the released anatomy segmentations. Bilateral structures are stored as left and right instances. The complete label-index map is provided as a machine-readable file with the release [TBD: confirm the exact index values and folder names against the deposited files].}\label{tab:labels}
+\caption{Structures covered by the released anatomy segmentations. Bilateral structures are released as separate left and right segments. The complete label-index map is provided as a machine-readable data dictionary with the release [TBD: Felix, confirm the exact 20-label index values].}\label{tab:labels}
 \begin{tabular}{@{}lll@{}}
 \toprule
 Group & Structure & Laterality \\
@@ -56,7 +60,7 @@ Skeleton & Femur          & Left, Right \\
 Skeleton & Tibia          & Left, Right \\
 Skeleton & Fibula         & Left, Right \\
 Skeleton & Humerus        & Left, Right \\
-Skeleton & Hip            & Left, Right \\
+Skeleton & Pelvis         & Left, Right \\
 Skeleton & Spine          & Single \\
 Skeleton & Sacrum         & Single \\
 Organ    & Lung           & Left, Right \\
@@ -72,7 +76,9 @@ Organ    & Urinary bladder & Single \\
 \subsection*{Metadata}\label{subsec:metadata}
 A per-examination metadata table is provided as an open plain-text file (CSV) with an accompanying data dictionary, so the dataset is usable with standard tooling.
 The table captures the indexing variables useful for cohort selection and modeling, grouped as in Table~\ref{tab:vars}.
-The annotation protocol is recorded per labeled examination, distinguishing the correction-based labels from the from-scratch labels (Section~\ref{sec:methods}).
+The acquisition variables are populated from the DICOM headers.
+The file and quality-control variables record, for each DICOM-SEG object, the source image series it references and a checksum, so the referential link between a segmentation and its imaging can be verified.
+The annotation protocol is recorded per labeled examination and distinguishes the correction-based labels from the from-scratch labels (Section~\ref{sec:methods}).
 
 \begin{table}[h]
 \caption{Indexing variables provided with the dataset [TBD: finalize against the deposited metadata files].}\label{tab:vars}
@@ -80,11 +86,11 @@ The annotation protocol is recorded per labeled examination, distinguishing the 
 \toprule
 Group & Example fields \\
 \midrule
-Subject and demographics & subject\_id, age\_at\_scan, sex \\
-Clinical context         & diagnosis, lymphoma\_subtype, protocol\_provenance \\
-Acquisition              & scanner, field\_strength, sequence, voxel\_spacing, TR, TE \\
-Labels and annotation    & label\_id, structure, laterality, annotation\_protocol \\
-File and quality control & file\_reference, checksum, qc\_status, license \\
+Subject and demographics   & subject\_id, age\_at\_scan, sex \\
+Clinical context           & diagnosis, lymphoma\_subtype, protocol\_provenance \\
+Acquisition (DICOM header) & scanner, field\_strength, sequence, voxel\_spacing, TR, TE \\
+Labels and annotation      & label\_id, structure, laterality, coded\_anatomy, annotation\_protocol \\
+Files and quality control  & image\_series\_uid, seg\_sop\_instance\_uid, referenced\_series\_uid, checksum, qc\_status \\
 \botrule
 \end{tabular}
 \end{table}
